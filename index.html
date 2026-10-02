@@ -1,0 +1,2256 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>impreSION | Papelería, Plantillas y Manualidades</title>
+  
+  <!-- Iconos de FontAwesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- Fuentes Google -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@700&family=Fredoka:wght@500;700;900&family=Quicksand:wght@500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    /* ==========================================================================
+       1. VARIABLES Y ESTILOS GLOBALES (EQUILIBRIO 50/50 CELESTE Y ROSA)
+       ========================================================================== */
+    :root {
+      --primary-celeste: #85ccee;
+      --primary-celeste-deep: #008cd6;
+      --primary-rosa: #ff80bf;
+      --rosa-vibrante: #e6007e;
+      --bg-celeste-soft: #f0f8ff;
+      --bg-rosa-soft: #fff0f6;
+      --text-dark: #2d3748;
+      --text-muted: #718096;
+      --border-color: #fce7f3;
+      --white: #ffffff;
+      
+      --badge-pdf: #ff5252;
+      --badge-canva: #20c997;
+      --badge-fisico: #ff9f43;
+      --badge-combo: #a55eea;
+      --warning-red: #d9534f;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Quicksand', sans-serif;
+    }
+
+    body {
+      background-color: #faf7fc;
+      color: var(--text-dark);
+      padding-bottom: 60px;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    /* MANCHAS DIFUMINADAS BALANCEADAS (Celeste y Rosa por igual) */
+    .bg-blob {
+      position: fixed;
+      border-radius: 50%;
+      filter: blur(90px);
+      opacity: 0.45;
+      z-index: -1;
+      pointer-events: none;
+    }
+
+    .blob-left-1 {
+      top: 10%;
+      left: -120px;
+      width: 450px;
+      height: 450px;
+      background: radial-gradient(circle, var(--primary-celeste) 0%, rgba(133,204,238,0) 70%);
+    }
+
+    .blob-left-2 {
+      top: 55%;
+      left: -100px;
+      width: 400px;
+      height: 400px;
+      background: radial-gradient(circle, var(--primary-rosa) 0%, rgba(255,128,191,0) 70%);
+    }
+
+    .blob-right-1 {
+      top: 25%;
+      right: -120px;
+      width: 420px;
+      height: 420px;
+      background: radial-gradient(circle, var(--primary-rosa) 0%, rgba(255,128,191,0) 70%);
+    }
+
+    .blob-right-2 {
+      top: 75%;
+      right: -100px;
+      width: 380px;
+      height: 380px;
+      background: radial-gradient(circle, var(--primary-celeste) 0%, rgba(133,204,238,0) 70%);
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    h1, h2, h3, h4, .brand-logo, .tab-btn, .add-to-cart-btn, .add-cart-secondary-btn {
+      font-family: 'Fredoka', sans-serif;
+    }
+
+    /* ==========================================================================
+       2. ENCABEZADO Y NAVEGACIÓN
+       ========================================================================== */
+    .top-announcement {
+      background: linear-gradient(90deg, var(--primary-celeste-deep) 0%, var(--primary-rosa) 100%);
+      color: var(--white);
+      text-align: center;
+      padding: 9px 12px;
+      font-size: 0.9rem;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+    }
+
+    header {
+      background-color: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      border-bottom: 2px solid #ffd1dc;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .header-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 12px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 15px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 20px;
+      list-style: none;
+      font-size: 0.98rem;
+      font-weight: 700;
+    }
+
+    .nav-links a {
+      cursor: pointer;
+      color: var(--text-dark);
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover {
+      color: var(--rosa-vibrante);
+    }
+
+    .brand-logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 900;
+      font-size: 1.35rem;
+      color: var(--rosa-vibrante);
+      letter-spacing: 0.5px;
+    }
+
+    .brand-logo img {
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      object-fit: cover;
+      padding: 2px;
+      background: linear-gradient(135deg, var(--primary-celeste), var(--rosa-vibrante));
+      box-shadow: 0 3px 8px rgba(230, 0, 126, 0.2);
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .search-box {
+      position: relative;
+    }
+
+    .search-box input {
+      padding: 8px 35px 8px 15px;
+      border-radius: 20px;
+      border: 2px solid var(--primary-celeste);
+      outline: none;
+      font-size: 0.88rem;
+      width: 180px;
+      font-weight: 600;
+      transition: all 0.3s;
+    }
+
+    .search-box input:focus {
+      width: 220px;
+      border-color: var(--primary-rosa);
+      box-shadow: 0 0 8px rgba(255, 128, 191, 0.3);
+    }
+
+    .search-box i {
+      position: absolute;
+      right: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--rosa-vibrante);
+    }
+
+    .icon-btn {
+      background: none;
+      border: none;
+      font-size: 1.3rem;
+      cursor: pointer;
+      color: var(--rosa-vibrante);
+      position: relative;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .user-name-display {
+      font-size: 0.88rem;
+      font-weight: 700;
+      color: var(--text-dark);
+    }
+
+    .cart-count {
+      position: absolute;
+      top: -8px;
+      right: -8px;
+      background-color: var(--primary-celeste-deep);
+      color: white;
+      font-size: 0.72rem;
+      width: 19px;
+      height: 19px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+    }
+
+    /* Notificación Toast */
+    .toast-notification {
+      position: fixed;
+      bottom: 25px;
+      left: 20px;
+      background-color: #20c997;
+      color: white;
+      padding: 12px 20px;
+      border-radius: 12px;
+      font-weight: 700;
+      font-size: 0.9rem;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+      z-index: 2000;
+      display: none;
+      align-items: center;
+      gap: 10px;
+      animation: fadeIn 0.3s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ==========================================================================
+       3. SECCIONES Y BANNERS (Degradado 50% Celeste / 50% Rosa)
+       ========================================================================== */
+    .hero-banner {
+      background: linear-gradient(135deg, rgba(227, 242, 253, 0.9) 0%, rgba(255, 240, 246, 0.9) 100%);
+      padding: 40px 20px;
+      text-align: center;
+      border-bottom: 3px solid #ffd1dc;
+    }
+
+    .hero-title-container {
+      display: inline-flex;
+      align-items: baseline;
+      justify-content: center;
+      margin-bottom: 10px;
+      letter-spacing: -1px;
+      user-select: none;
+    }
+
+    .hero-title-container .impre {
+      font-family: 'Fredoka', sans-serif;
+      font-size: 4.2rem;
+      font-weight: 900;
+      color: #008cd6;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      -webkit-text-stroke: 4px #ffffff;
+      text-shadow: 
+        3px 3px 0px #005a9c,
+        5px 5px 0px #003a66,
+        7px 7px 12px rgba(0,0,0,0.2);
+      position: relative;
+      z-index: 2;
+    }
+
+    .hero-title-container .sion {
+      font-family: 'Caveat', cursive;
+      font-size: 5.5rem;
+      font-weight: 700;
+      color: #e6007e;
+      margin-left: -12px;
+      transform: rotate(-5deg);
+      display: inline-block;
+      -webkit-text-stroke: 3px #ffffff;
+      text-shadow: 
+        2px 2px 0px #b30062,
+        4px 4px 0px #70003d,
+        6px 6px 10px rgba(0,0,0,0.2);
+      position: relative;
+      z-index: 3;
+    }
+
+    .hero-logo-container {
+      margin: 15px auto 15px;
+      display: flex;
+      justify-content: center;
+    }
+
+    .hero-logo-img {
+      max-width: 300px;
+      width: 100%;
+      height: auto;
+      border-radius: 50%;
+      padding: 6px;
+      background: linear-gradient(135deg, var(--primary-celeste) 0%, #ffffff 50%, var(--primary-rosa) 100%);
+      box-shadow: 0 10px 25px rgba(255, 128, 191, 0.35);
+      animation: floatLogo 4s ease-in-out infinite;
+    }
+
+    @keyframes floatLogo {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-8px); }
+    }
+
+    .hero-subtitle {
+      font-size: 1.15rem;
+      color: var(--text-dark);
+      font-weight: 600;
+      margin-top: 10px;
+    }
+
+    .type-tabs {
+      max-width: 1200px;
+      margin: 20px auto 0;
+      padding: 0 20px;
+      display: flex;
+      gap: 15px;
+      justify-content: center;
+    }
+
+    .tab-btn {
+      padding: 12px 26px;
+      font-size: 1.05rem;
+      font-weight: 700;
+      border: 2px solid var(--primary-rosa);
+      border-radius: 30px;
+      background-color: white;
+      color: var(--text-dark);
+      cursor: pointer;
+      transition: all 0.3s;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .tab-btn.active, .tab-btn:hover {
+      background: linear-gradient(135deg, var(--primary-celeste), var(--primary-rosa));
+      color: white;
+      border-color: transparent;
+      box-shadow: 0 4px 12px rgba(230, 0, 126, 0.25);
+    }
+
+    .info-payment-banner {
+      max-width: 1200px;
+      margin: 30px auto 25px auto;
+      padding: 20px 25px;
+      background: linear-gradient(135deg, var(--bg-celeste-soft) 0%, var(--bg-rosa-soft) 100%);
+      border-left: 6px solid var(--rosa-vibrante);
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      flex-wrap: wrap;
+      box-shadow: 0 4px 15px rgba(255, 128, 191, 0.25);
+    }
+
+    .info-payment-banner strong {
+      font-size: 1.1rem;
+      color: var(--text-dark);
+      display: block;
+      margin-bottom: 4px;
+    }
+
+    .info-payment-banner p {
+      font-size: 0.92rem;
+      color: var(--text-muted);
+      margin: 0;
+      font-weight: 600;
+    }
+
+    /* CARRUSEL DE COMBOS */
+    .combos-carousel-container {
+      max-width: 1200px;
+      margin: 0 auto 35px auto;
+      padding: 0 20px;
+      position: relative;
+    }
+
+    .carousel-wrapper {
+      position: relative;
+      border-radius: 16px;
+      overflow: hidden;
+      background: linear-gradient(135deg, #1e293b, #4a154b);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+      border: 2px solid var(--primary-rosa);
+    }
+
+    .carousel-slides {
+      display: flex;
+      transition: transform 0.5s ease-in-out;
+      width: 100%;
+    }
+
+    .slide-item {
+      min-width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 30px 40px;
+      color: white;
+      gap: 30px;
+      background-size: cover;
+      background-position: center;
+      position: relative;
+    }
+
+    .slide-item::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background: rgba(30, 41, 59, 0.8);
+      z-index: 1;
+    }
+
+    .slide-content {
+      position: relative;
+      z-index: 2;
+      max-width: 550px;
+    }
+
+    .slide-badge {
+      display: inline-block;
+      background-color: var(--rosa-vibrante);
+      color: white;
+      font-size: 0.75rem;
+      font-weight: bold;
+      padding: 4px 12px;
+      border-radius: 20px;
+      margin-bottom: 12px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .slide-title {
+      font-size: 1.8rem;
+      font-weight: 800;
+      margin-bottom: 10px;
+      color: #ffffff;
+      line-height: 1.2;
+    }
+
+    .slide-description {
+      font-size: 0.95rem;
+      color: #cbd5e1;
+      margin-bottom: 20px;
+      line-height: 1.5;
+    }
+
+    .slide-price-box {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      margin-bottom: 20px;
+    }
+
+    .price-old {
+      font-size: 1.1rem;
+      text-decoration: line-through;
+      color: #94a3b8;
+    }
+
+    .price-new {
+      font-size: 1.8rem;
+      font-weight: bold;
+      color: #20c997;
+    }
+
+    .slide-img-box {
+      position: relative;
+      z-index: 2;
+      width: 280px;
+      height: 200px;
+      flex-shrink: 0;
+      border-radius: 12px;
+      overflow: hidden;
+      border: 3px solid rgba(255,255,255,0.2);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+    }
+
+    .slide-img-box img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .carousel-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 42px;
+      height: 42px;
+      background-color: rgba(255, 255, 255, 0.9);
+      color: var(--text-dark);
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      z-index: 10;
+      font-size: 1.1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+      transition: all 0.2s;
+    }
+
+    .carousel-btn:hover {
+      background-color: var(--primary-rosa);
+      color: white;
+    }
+
+    .carousel-btn.prev { left: 15px; }
+    .carousel-btn.next { right: 15px; }
+
+    .carousel-dots {
+      position: absolute;
+      bottom: 15px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 10px;
+      z-index: 10;
+    }
+
+    .dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background-color: rgba(255, 255, 255, 0.4);
+      cursor: pointer;
+      transition: background-color 0.3s, transform 0.3s;
+    }
+
+    .dot.active {
+      background-color: var(--primary-rosa);
+      transform: scale(1.2);
+      box-shadow: 0 0 8px rgba(255, 128, 191, 0.8);
+    }
+
+    /* SECCIÓN LO MÁS VIRAL */
+    .viral-section {
+      max-width: 1200px;
+      margin: 0 auto 40px auto;
+      padding: 0 20px;
+    }
+
+    .viral-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 18px;
+    }
+
+    .viral-header h2 {
+      font-size: 1.6rem;
+      font-weight: 800;
+      color: var(--rosa-vibrante);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .viral-card {
+      background: linear-gradient(135deg, #008cd6 0%, #e6007e 100%);
+      border-radius: 20px;
+      padding: 30px;
+      color: white;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 30px;
+      align-items: center;
+      box-shadow: 0 12px 30px rgba(230, 0, 126, 0.25);
+      border: 1px solid rgba(255,255,255,0.3);
+    }
+
+    .viral-video-box {
+      width: 100%;
+      height: 320px;
+      background: #000;
+      border-radius: 14px;
+      overflow: hidden;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+      position: relative;
+    }
+
+    .viral-video-box video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .viral-info {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .viral-tag {
+      display: inline-block;
+      background: #ffffff;
+      color: var(--rosa-vibrante);
+      font-size: 0.8rem;
+      font-weight: 800;
+      padding: 4px 14px;
+      border-radius: 20px;
+      width: fit-content;
+      margin-bottom: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+    }
+
+    .viral-title {
+      font-size: 2rem;
+      font-weight: 800;
+      line-height: 1.25;
+      margin-bottom: 12px;
+    }
+
+    .viral-desc {
+      font-size: 0.98rem;
+      color: #f8fafc;
+      line-height: 1.55;
+      margin-bottom: 22px;
+    }
+
+    @media (max-width: 868px) {
+      .viral-card {
+        grid-template-columns: 1fr;
+        padding: 20px;
+      }
+      .viral-video-box {
+        height: 240px;
+      }
+      .viral-title {
+        font-size: 1.5rem;
+      }
+      .slide-item {
+        flex-direction: column;
+        text-align: center;
+        padding: 25px 20px 45px 20px;
+      }
+      .slide-img-box {
+        width: 100%;
+        height: 160px;
+      }
+      .slide-price-box {
+        justify-content: center;
+      }
+      .slide-title { font-size: 1.4rem; }
+    }
+
+    /* ==========================================================================
+       4. CATÁLOGO Y PRODUCTOS
+       ========================================================================== */
+    .main-layout {
+      max-width: 1200px;
+      margin: 30px auto;
+      padding: 0 20px;
+      display: grid;
+      grid-template-columns: 240px 1fr;
+      gap: 30px;
+    }
+
+    @media (max-width: 768px) {
+      .main-layout {
+        grid-template-columns: 1fr;
+      }
+      .nav-links {
+        display: none;
+      }
+      .type-tabs {
+        flex-direction: column;
+      }
+      .hero-title-container .impre { font-size: 2.8rem; -webkit-text-stroke: 2px #fff; }
+      .hero-title-container .sion { font-size: 3.8rem; -webkit-text-stroke: 2px #fff; }
+    }
+
+    .sidebar h3 {
+      font-size: 1.1rem;
+      color: var(--rosa-vibrante);
+      margin-bottom: 15px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      border-bottom: 3px solid var(--primary-celeste);
+      padding-bottom: 6px;
+    }
+
+    .category-list {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .cat-btn {
+      background: rgba(255, 255, 255, 0.9);
+      backdrop-filter: blur(5px);
+      border: 1.5px solid #ffd1dc;
+      text-align: left;
+      padding: 10px 14px;
+      border-radius: 10px;
+      cursor: pointer;
+      font-size: 0.92rem;
+      font-weight: 700;
+      color: var(--text-dark);
+      transition: all 0.2s;
+    }
+
+    .cat-btn:hover, .cat-btn.active {
+      background-color: var(--bg-rosa-soft);
+      color: var(--rosa-vibrante);
+      border-color: var(--primary-rosa);
+      padding-left: 18px;
+    }
+
+    .catalog-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+
+    .catalog-header h2 {
+      font-size: 1.6rem;
+      color: var(--rosa-vibrante);
+    }
+
+    .sort-select {
+      padding: 8px 14px;
+      border-radius: 10px;
+      border: 2px solid var(--primary-celeste);
+      outline: none;
+      font-size: 0.9rem;
+      font-weight: 600;
+      background-color: white;
+      color: var(--text-dark);
+    }
+
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 22px;
+    }
+
+    .product-card {
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(5px);
+      border-radius: 16px;
+      border: 2px solid #ffd1dc;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+    }
+
+    .product-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(255, 128, 191, 0.25);
+      border-color: var(--primary-rosa);
+    }
+
+    .card-header-bg {
+      background-color: var(--bg-celeste-soft);
+      padding: 10px;
+      text-align: center;
+      font-size: 0.78rem;
+      font-weight: 800;
+      color: var(--primary-celeste-deep);
+      position: relative;
+    }
+
+    .badge {
+      position: absolute;
+      bottom: 8px;
+      right: 8px;
+      padding: 3px 9px;
+      border-radius: 12px;
+      color: white;
+      font-size: 0.68rem;
+      font-weight: bold;
+    }
+
+    .badge.pdf { background-color: var(--badge-pdf); }
+    .badge.canva { background-color: var(--badge-canva); }
+    .badge.fisico { background-color: var(--badge-fisico); }
+    .badge.combo { background-color: var(--badge-combo); }
+
+    .product-clickable-area {
+      cursor: pointer;
+    }
+
+    .product-card img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      transition: opacity 0.2s;
+    }
+
+    .product-card img:hover {
+      opacity: 0.9;
+    }
+
+    .card-body {
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+      justify-content: space-between;
+    }
+
+    .product-title {
+      font-size: 0.92rem;
+      font-weight: 700;
+      margin-bottom: 8px;
+      text-transform: uppercase;
+      color: var(--text-dark);
+      line-height: 1.3;
+      cursor: pointer;
+    }
+
+    .product-title:hover {
+      color: var(--rosa-vibrante);
+    }
+
+    .product-price {
+      font-size: 1.25rem;
+      font-weight: 900;
+      color: var(--rosa-vibrante);
+      font-family: 'Fredoka', sans-serif;
+    }
+
+    .product-installments {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      margin-bottom: 12px;
+      font-weight: 600;
+    }
+
+    .card-buttons-group {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      width: 100%;
+    }
+
+    .add-to-cart-btn {
+      width: 100%;
+      background: linear-gradient(135deg, var(--primary-rosa), var(--rosa-vibrante));
+      color: white;
+      border: none;
+      padding: 10px;
+      border-radius: 10px;
+      font-weight: 700;
+      cursor: pointer;
+      font-size: 0.95rem;
+      transition: opacity 0.2s, transform 0.1s;
+      box-shadow: 0 4px 10px rgba(230, 0, 126, 0.2);
+    }
+
+    .add-to-cart-btn:hover {
+      opacity: 0.92;
+      transform: scale(1.01);
+    }
+
+    .add-cart-secondary-btn {
+      width: 100%;
+      background-color: var(--bg-celeste-soft);
+      color: var(--primary-celeste-deep);
+      border: 2px solid var(--primary-celeste);
+      padding: 8px;
+      border-radius: 10px;
+      font-weight: 700;
+      cursor: pointer;
+      font-size: 0.88rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      transition: all 0.2s;
+    }
+
+    .add-cart-secondary-btn:hover {
+      background-color: var(--primary-celeste);
+      color: white;
+    }
+
+    /* ==========================================================================
+       5. MODAL DE VISTA PREVIA DETALLADA Y RESEÑAS
+       ========================================================================== */
+    .modal-overlay {
+      position: fixed;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background: rgba(0,0,0,0.6);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+      padding: 20px;
+      overflow-y: auto;
+    }
+
+    .modal-overlay.active {
+      display: flex;
+    }
+
+    .modal-card {
+      background: white;
+      padding: 30px;
+      border-radius: 20px;
+      width: 90%;
+      max-width: 650px;
+      position: relative;
+      border: 3px solid var(--primary-rosa);
+      max-height: 90vh;
+      overflow-y: auto;
+    }
+
+    .product-detail-container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      align-items: start;
+      text-align: left;
+    }
+
+    @media (max-width: 768px) {
+      .product-detail-container {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .detail-img-main {
+      width: 100%;
+      height: 250px;
+      object-fit: cover;
+      border-radius: 12px;
+      border: 2px solid var(--border-color);
+      margin-bottom: 10px;
+    }
+
+    .detail-thumbnails {
+      display: flex;
+      gap: 8px;
+    }
+
+    .detail-thumb {
+      width: 50px;
+      height: 50px;
+      object-fit: cover;
+      border-radius: 6px;
+      cursor: pointer;
+      border: 2px solid transparent;
+      opacity: 0.7;
+    }
+
+    .detail-thumb:hover, .detail-thumb.active {
+      border-color: var(--rosa-vibrante);
+      opacity: 1;
+    }
+
+    .detail-info h3 {
+      font-size: 1.3rem;
+      color: var(--text-dark);
+      margin-bottom: 10px;
+    }
+
+    .detail-price {
+      font-size: 1.6rem;
+      font-weight: 900;
+      color: var(--rosa-vibrante);
+      font-family: 'Fredoka';
+      margin-bottom: 10px;
+    }
+
+    .rating-stars-display {
+      color: #ffc107;
+      font-size: 1rem;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      font-weight: 700;
+    }
+
+    /* SECCIÓN DE COMENTARIOS Y ESTRELLAS */
+    .reviews-section {
+      margin-top: 25px;
+      border-top: 2px solid var(--border-color);
+      padding-top: 20px;
+      text-align: left;
+    }
+
+    .reviews-section h4 {
+      font-size: 1.1rem;
+      color: var(--rosa-vibrante);
+      margin-bottom: 12px;
+    }
+
+    .review-item {
+      background: var(--bg-rosa-soft);
+      padding: 10px 14px;
+      border-radius: 10px;
+      margin-bottom: 10px;
+      font-size: 0.88rem;
+    }
+
+    .review-author {
+      font-weight: bold;
+      color: var(--text-dark);
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .review-stars {
+      color: #ffc107;
+    }
+
+    .review-form {
+      margin-top: 15px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .star-select-input {
+      display: flex;
+      gap: 5px;
+      font-size: 1.2rem;
+      color: #ccc;
+      cursor: pointer;
+    }
+
+    .star-select-input .star.selected {
+      color: #ffc107;
+    }
+
+    .form-input {
+      width: 100%;
+      padding: 10px;
+      border: 2px solid var(--border-color);
+      border-radius: 8px;
+      outline: none;
+      font-size: 0.9rem;
+      font-weight: 600;
+    }
+
+    .submit-btn {
+      width: 100%;
+      background: linear-gradient(135deg, var(--primary-rosa), var(--rosa-vibrante));
+      color: white;
+      border: none;
+      padding: 10px;
+      border-radius: 8px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    /* Modales Estándar */
+    .standard-modal-card {
+      background: white;
+      padding: 30px;
+      border-radius: 20px;
+      width: 90%;
+      max-width: 480px;
+      position: relative;
+      text-align: center;
+      border: 3px solid var(--primary-rosa);
+    }
+
+    .close-modal {
+      position: absolute;
+      top: 12px;
+      right: 15px;
+      background: none;
+      border: none;
+      font-size: 1.4rem;
+      cursor: pointer;
+      color: var(--text-muted);
+    }
+
+    .payment-options {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin: 15px 0;
+    }
+
+    .pay-app-btn {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 15px;
+      border: 2px solid var(--border-color);
+      border-radius: 12px;
+      background: #fff;
+      cursor: pointer;
+      font-weight: 700;
+      transition: all 0.2s;
+    }
+
+    .pay-app-btn:hover {
+      border-color: var(--primary-rosa);
+      background-color: var(--bg-rosa-soft);
+    }
+
+    .alias-box {
+      background-color: var(--bg-celeste-soft);
+      border: 2px dashed var(--primary-celeste-deep);
+      padding: 15px;
+      border-radius: 12px;
+      margin: 15px 0;
+      font-size: 1.1rem;
+      font-weight: bold;
+      color: var(--text-dark);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .copy-btn {
+      background: var(--primary-celeste-deep);
+      color: white;
+      border: none;
+      padding: 6px 14px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 0.85rem;
+      font-weight: bold;
+    }
+
+    .mandatory-notice {
+      background-color: var(--bg-rosa-soft);
+      border: 1px solid #ffb3d9;
+      color: #b30059;
+      padding: 12px;
+      border-radius: 10px;
+      font-size: 0.85rem;
+      margin: 15px 0;
+      text-align: left;
+      line-height: 1.4;
+      font-weight: 600;
+    }
+
+    .mandatory-notice strong {
+      color: var(--rosa-vibrante);
+      display: block;
+      margin-bottom: 4px;
+      font-size: 0.9rem;
+    }
+
+    /* Carrito Desplegable */
+    .cart-drawer {
+      position: fixed;
+      top: 0; right: -350px;
+      width: 320px; height: 100%;
+      background: white;
+      box-shadow: -2px 0 10px rgba(0,0,0,0.1);
+      z-index: 1001;
+      transition: right 0.3s ease;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      border-left: 3px solid var(--primary-rosa);
+    }
+
+    .cart-drawer.open {
+      right: 0;
+    }
+
+    .cart-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 2px solid var(--border-color);
+      padding-bottom: 10px;
+    }
+
+    .cart-items {
+      flex-grow: 1;
+      overflow-y: auto;
+      margin: 20px 0;
+    }
+
+    .cart-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 12px;
+      font-size: 0.88rem;
+      font-weight: 600;
+      background-color: var(--bg-celeste-soft);
+      padding: 10px;
+      border-radius: 8px;
+    }
+
+    .checkout-btn {
+      width: 100%;
+      background-color: #25d366;
+      color: white;
+      border: none;
+      padding: 12px;
+      border-radius: 10px;
+      font-weight: bold;
+      font-size: 1rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+
+    .logout-btn {
+      background: none;
+      border: none;
+      color: var(--badge-pdf);
+      cursor: pointer;
+      font-size: 0.8rem;
+      margin-left: 5px;
+      text-decoration: underline;
+      font-weight: 700;
+    }
+
+    .step-list {
+      text-align: left;
+      padding-left: 0;
+      list-style: none;
+      margin: 15px 0;
+    }
+
+    .step-list li {
+      position: relative;
+      padding-left: 36px;
+      margin-bottom: 14px;
+      font-size: 0.9rem;
+      line-height: 1.45;
+      color: var(--text-dark);
+      font-weight: 600;
+    }
+
+    .step-number {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 24px;
+      height: 24px;
+      background-color: var(--rosa-vibrante);
+      color: white;
+      font-weight: bold;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.8rem;
+    }
+
+    /* ==========================================================================
+       6. PIE DE PÁGINA Y BOTONES FLOTANTES
+       ========================================================================== */
+    footer {
+      background: linear-gradient(135deg, rgba(227, 242, 253, 0.9) 0%, rgba(255, 240, 246, 0.9) 100%);
+      border-top: 2px solid #ffd1dc;
+      padding: 40px 20px;
+      margin-top: 50px;
+    }
+
+    .footer-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 30px;
+      font-size: 0.9rem;
+      font-weight: 600;
+    }
+
+    .footer-container h4 {
+      color: var(--rosa-vibrante);
+      margin-bottom: 12px;
+    }
+
+    .floating-buttons {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      z-index: 99;
+    }
+
+    .float-btn {
+      width: 46px;
+      height: 46px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 1.3rem;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    }
+
+    .float-btn.ws { background-color: #25d366; }
+    .float-btn.ig { 
+      background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%,#d6249f 60%,#285AEB 90%);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- MANCHAS DIFUMINADAS BALANCEADAS -->
+  <div class="bg-blob blob-left-1"></div>
+  <div class="bg-blob blob-left-2"></div>
+  <div class="bg-blob blob-right-1"></div>
+  <div class="bg-blob blob-right-2"></div>
+
+  <!-- Notificación Toast -->
+  <div id="toastNotification" class="toast-notification">
+    <i class="fa-solid fa-circle-check"></i>
+    <span id="toastText">¡Producto agregado al carrito!</span>
+  </div>
+
+  <div class="top-announcement">¡Bienvenido/a a impreSION - Productos Físicos y Digitales!</div>
+
+  <header>
+    <div class="header-container">
+      <ul class="nav-links">
+        <li><a onclick="scrollToSection('hero')">Inicio</a></li>
+        <li><a onclick="filterFormat('all')">Todos los Productos</a></li>
+        <li><a onclick="filterFormat('virtual')">Productos Virtuales</a></li>
+        <li><a onclick="filterFormat('fisico')">Productos Físicos</a></li>
+        <li><a onclick="openHowToBuy()">Cómo Comprar</a></li>
+      </ul>
+
+      <!-- Logo superior izquierdo -->
+      <a href="#" class="brand-logo">
+        <img src="file:///C:/Users/lh428/Desktop/imagenes%20flor/watermarked_img_12875868338885641363.jpg" alt="Logo IMPRESION">
+        <span>IMPRESION</span>
+      </a>
+
+      <div class="header-actions">
+        <div class="search-box">
+          <input type="text" id="searchInput" placeholder="¿Qué buscás?" onkeyup="filterProducts()">
+          <i class="fa-solid fa-magnifying-glass"></i>
+        </div>
+        
+        <button class="icon-btn" onclick="handleUserIconClick()" aria-label="Cuenta de usuario">
+          <i class="fa-regular fa-user"></i>
+          <span class="user-name-display" id="userDisplay"></span>
+        </button>
+        <button id="logoutBtn" class="logout-btn" style="display:none;" onclick="logoutUser()">Salir</button>
+
+        <button class="icon-btn" onclick="toggleCart()" aria-label="Ver Carrito">
+          <i class="fa-solid fa-bag-shopping"></i>
+          <span class="cart-count" id="cartCount">0</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <section class="hero-banner" id="hero">
+    <div class="hero-title-container">
+      <span class="impre">IMPRE</span><span class="sion">SIÓN</span>
+    </div>
+    
+    <div class="hero-logo-container">
+      <img src="file:///C:/Users/lh428/Desktop/imagenes%20flor/watermarked_img_12875868338885641363.jpg" alt="Logo ImpreSion Creativa" class="hero-logo-img">
+    </div>
+
+    <p class="hero-subtitle">Papelería Artesanal · Manualidades · Plantillas Editables · Libros para Colorear</p>
+  </section>
+
+  <!-- Pestañas para elegir tipo de producto -->
+  <div class="type-tabs">
+    <button class="tab-btn active" id="btnTabAll" onclick="filterFormat('all')">
+      <i class="fa-solid fa-border-all"></i> Ver Todos
+    </button>
+    <button class="tab-btn" id="btnTabVirtual" onclick="filterFormat('virtual')">
+      <i class="fa-solid fa-laptop-code"></i> Productos Virtuales
+    </button>
+    <button class="tab-btn" id="btnTabFisico" onclick="filterFormat('fisico')">
+      <i class="fa-solid fa-box-open"></i> Productos Físicos
+    </button>
+  </div>
+
+  <!-- Banner Informativo del Sistema de Pago -->
+  <div class="info-payment-banner">
+    <div>
+      <strong><i class="fa-solid fa-bolt" style="color: var(--rosa-vibrante);"></i> Sistema de Compra y Pago Directo</strong>
+      <p>Transferí desde Mercado Pago, Ualá, BNA+ u otro banco al Alias <strong>Impresionfmx</strong> y enviá tu comprobante por WhatsApp.</p>
+    </div>
+    <button class="add-to-cart-btn" style="width: auto; padding: 10px 20px;" onclick="openHowToBuy()">Ver Paso a Paso</button>
+  </div>
+
+  <!-- CARRUSEL RECTANGULAR DE COMBOS Y PROMOCIONES -->
+  <div class="combos-carousel-container">
+    <div class="carousel-wrapper">
+      <button class="carousel-btn prev" onclick="moveSlide(-1)" aria-label="Anterior"><i class="fa-solid fa-chevron-left"></i></button>
+
+      <div class="carousel-slides" id="carouselSlides">
+        <div class="slide-item">
+          <div class="slide-content">
+            <span class="slide-badge">SUPER COMBO FÍSICO + VIRTUAL</span>
+            <h2 class="slide-title">Combo Emprendedor Digital & Papelería</h2>
+            <p class="slide-description">Incluye: Plantillas Canva de Feed Instagram + Cuaderno de Pedidos A5 Tapa Dura + Pack 50 Stickers Troquelados.</p>
+            <div class="slide-price-box">
+              <span class="price-old">$14.800</span>
+              <span class="price-new">$11.500</span>
+            </div>
+            <button class="add-to-cart-btn" style="width: auto; padding: 10px 24px;" onclick="buyPromoCombo('COMBO EMPRENDEDOR COMPLETO', 11500)">¡Aprovechar Promo!</button>
+          </div>
+          <div class="slide-img-box">
+            <img src="https://picsum.photos/seed/combo1/500/300" alt="Combo Emprendedor">
+          </div>
+        </div>
+
+        <div class="slide-item">
+          <div class="slide-content">
+            <span class="slide-badge">PROMO VIRTUAL DESCARGABLE</span>
+            <h2 class="slide-title">Mega Pack Escolar Editables & Colorear</h2>
+            <p class="slide-description">Llevate el Kit de Etiquetas Escolares + Libro para Colorear Animalitos (PDF) + Agenda Perpetua Imprimible.</p>
+            <div class="slide-price-box">
+              <span class="price-old">$7.800</span>
+              <span class="price-new">$5.200</span>
+            </div>
+            <button class="add-to-cart-btn" style="width: auto; padding: 10px 24px;" onclick="buyPromoCombo('MEGA PACK ESCOLAR VIRTUAL', 5200)">Comprar Pack Digital</button>
+          </div>
+          <div class="slide-img-box">
+            <img src="https://picsum.photos/seed/combo2/500/300" alt="Pack Escolar">
+          </div>
+        </div>
+
+        <div class="slide-item">
+          <div class="slide-content">
+            <span class="slide-badge">COMBO PAPELERÍA FÍSICA</span>
+            <h2 class="slide-title">Combo Arte & Creatividad Artesanal</h2>
+            <p class="slide-description">Incluye Libro para Colorear Manga/Anime + Set de Lápices + Box de Papelería con Sticky Notes y Plumas.</p>
+            <div class="slide-price-box">
+              <span class="price-old">$18.100</span>
+              <span class="price-new">$14.900</span>
+            </div>
+            <button class="add-to-cart-btn" style="width: auto; padding: 10px 24px;" onclick="buyPromoCombo('COMBO ARTE & CREATIVIDAD', 14900)">Llevar Promo Física</button>
+          </div>
+          <div class="slide-img-box">
+            <img src="https://picsum.photos/seed/combo3/500/300" alt="Combo Papelería">
+          </div>
+        </div>
+
+        <div class="slide-item">
+          <div class="slide-content">
+            <span class="slide-badge">EDICIÓN LIMITADA</span>
+            <h2 class="slide-title">Kit Organizador Semanal & Citas</h2>
+            <p class="slide-description">Agenda Artesanal 2026 Encuadernada a Mano + Plantilla Canva Citas y Turnos + Planner de Notas impreso.</p>
+            <div class="slide-price-box">
+              <span class="price-old">$15.400</span>
+              <span class="price-new">$12.200</span>
+            </div>
+            <button class="add-to-cart-btn" style="width: auto; padding: 10px 24px;" onclick="buyPromoCombo('KIT ORGANIZADOR COMPLETO 2026', 12200)">Comprar Ahora</button>
+          </div>
+          <div class="slide-img-box">
+            <img src="https://picsum.photos/seed/combo4/500/300" alt="Kit Organizador">
+          </div>
+        </div>
+      </div>
+
+      <button class="carousel-btn next" onclick="moveSlide(1)" aria-label="Siguiente"><i class="fa-solid fa-chevron-right"></i></button>
+
+      <div class="carousel-dots" id="carouselDots">
+        <span class="dot active" onclick="goToSlide(0)"></span>
+        <span class="dot" onclick="goToSlide(1)"></span>
+        <span class="dot" onclick="goToSlide(2)"></span>
+        <span class="dot" onclick="goToSlide(3)"></span>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECCIÓN: LO MÁS VIRAL -->
+  <section class="viral-section">
+    <div class="viral-header">
+      <h2><i class="fa-solid fa-fire" style="color: var(--rosa-vibrante);"></i> LO MÁS VIRAL</h2>
+    </div>
+
+    <div class="viral-card">
+     <div class="viral-video-box">
+    <video autoplay muted loop playsinline style="width: 100%; height: 100%; object-fit: cover;">
+        <source src="video_viral.mp4" type="video/mp4">
+        Tu navegador no soporta la reproducción de video.
+    </video>
+</div>
+
+      <div class="viral-info">
+        <span class="viral-tag"><i class="fa-solid fa-bolt"></i> Tendencia en Redes</span>
+        <h3 class="viral-title">Mira cómo cobran vida nuestros Productos Artesanales y Digitales</h3>
+        <p class="viral-desc">Descubre el proceso de diseño, encuadernado artesanal y uso de nuestras plantillas editables que están marcando tendencia en Instagram y TikTok.</p>
+        <button class="add-to-cart-btn" style="width: auto; padding: 12px 28px; background-color: #ffffff; color: var(--rosa-vibrante);" onclick="buyPromoCombo('KIT VIRAL DESTACADO', 8900)">
+          <i class="fa-solid fa-bag-shopping"></i> Comprar Kit Viral $8.900
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <main class="main-layout" id="catalog">
+    <aside class="sidebar">
+      <h3>Categorías</h3>
+      <div class="category-list" id="categoryList"></div>
+    </aside>
+
+    <section>
+      <div class="catalog-header">
+        <h2 id="catalogTitle">Todos los Productos</h2>
+        <select class="sort-select" id="sortSelect" onchange="sortProducts()">
+          <option value="newest">Más nuevo al más viejo</option>
+          <option value="low-high">Menor a mayor precio</option>
+          <option value="high-low">Mayor a menor precio</option>
+        </select>
+      </div>
+
+      <div class="products-grid" id="productsGrid"></div>
+    </section>
+  </main>
+
+  <!-- MODAL DE VISTA PREVIA DETALLADA Y RESEÑAS -->
+  <div class="modal-overlay" id="productDetailModal">
+    <div class="modal-card">
+      <button class="close-modal" onclick="toggleModal('productDetailModal')">&times;</button>
+      
+      <div class="product-detail-container" id="productDetailContent"></div>
+    </div>
+  </div>
+
+  <!-- MODALES DE PAGO Y USUARIO -->
+  <div class="modal-overlay" id="paymentModal">
+    <div class="standard-modal-card">
+      <button class="close-modal" onclick="toggleModal('paymentModal')">&times;</button>
+      <h3>Elegí cómo querés pagar</h3>
+      <p style="margin-bottom: 15px; font-weight: 600;">Seleccioná la aplicación o banco con el que vas a realizar la transferencia:</p>
+
+      <div class="payment-options">
+        <button class="pay-app-btn" onclick="selectPaymentApp('Mercado Pago')">
+          <span><i class="fa-solid fa-wallet" style="color: #009ee3;"></i> Mercado Pago</span>
+          <i class="fa-solid fa-chevron-right"></i>
+        </button>
+        <button class="pay-app-btn" onclick="selectPaymentApp('Ualá')">
+          <span><i class="fa-solid fa-credit-card" style="color: #ff3b30;"></i> Ualá</span>
+          <i class="fa-solid fa-chevron-right"></i>
+        </button>
+        <button class="pay-app-btn" onclick="selectPaymentApp('BNA+ (Banco Nación)')">
+          <span><i class="fa-solid fa-building-columns" style="color: #005691;"></i> BNA+ / Banco Nación</span>
+          <i class="fa-solid fa-chevron-right"></i>
+        </button>
+        <button class="pay-app-btn" onclick="selectPaymentApp('Otra Billetera / Banco')">
+          <span><i class="fa-solid fa-money-bill-transfer" style="color: #28a745;"></i> Otro Banco / Billetera</span>
+          <i class="fa-solid fa-chevron-right"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal-overlay" id="aliasModal">
+    <div class="standard-modal-card">
+      <button class="close-modal" onclick="toggleModal('aliasModal')">&times;</button>
+      <h3>Datos de Pago</h3>
+      <p style="font-weight: 600;">Vas a pagar mediante <strong id="selectedAppDisplay" style="color: var(--rosa-vibrante);"></strong></p>
+      
+      <p style="margin-top: 10px; font-weight: 600;">Transferí el monto total a este Alias:</p>
+
+      <div class="alias-box">
+        <span id="aliasText">Impresionfmx</span>
+        <button class="copy-btn" onclick="copyAlias()"><i class="fa-regular fa-copy"></i> Copiar</button>
+      </div>
+<!-- OPCIONES DE ENTREGA (Solo para productos físicos) -->
+   <!-- OPCIONES DE ENTREGA (Solo para productos físicos) -->
+    <div id="deliverySection" style="background: #f8f9fa; padding: 12px; border-radius: 8px; margin: 10px 0; border: 1px solid #e9ecef; text-align: left;">
+        <p style="font-weight: 600; margin-bottom: 8px; color: #333;"><i class="fa-solid fa-truck-fast"></i> Método de Entrega:</p>
+        
+        <label style="display: block; margin-bottom: 6px; cursor: pointer; font-size: 0.95rem;">
+            <input type="radio" name="deliveryMethod" value="retiro" checked onchange="updateDeliveryCost()"> 
+            <strong>Retiro por el local</strong> (Para retirar del local: 25 de mayo n°22 Arcadia)
+        </label>
+
+        <label style="display: block; cursor: pointer; font-size: 0.95rem;">
+            <input type="radio" name="deliveryMethod" value="correo" onchange="updateDeliveryCost()" style="margin-right: 5px;"> 
+            <strong>Envío por Correo</strong> (A coordinar según peso/lugar o $1.000 Concepción y alrededores)
+        </label>
+    </div>
+      <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 10px; font-weight: 600;">
+        Monto Total a transferir: <strong id="aliasTotalDisplay" style="color: var(--rosa-vibrante); font-size: 1.1rem;">$0</strong>
+      </p>
+
+      <div class="mandatory-notice">
+        <strong><i class="fa-solid fa-circle-exclamation"></i> OBLIGATORIO:</strong>
+        Es imprescindible enviar el comprobante generado desde tu aplicación al número de WhatsApp oficial de la empresa para verificar tu compra.
+      </div>
+
+      <button class="checkout-btn" onclick="sendProofWhatsApp()">
+        <i class="fa-brands fa-whatsapp"></i> Ya transferí, enviar comprobante
+      </button>
+    </div>
+  </div>
+
+  <div class="modal-overlay" id="loginModal">
+    <div class="standard-modal-card">
+      <button class="close-modal" onclick="toggleModal('loginModal')">&times;</button>
+      <h3>Iniciar sesión</h3>
+      <form id="loginForm" onsubmit="handleLogin(event)">
+        <input type="email" id="loginEmail" placeholder="E-mail" class="form-input" required style="margin: 10px 0;">
+        <input type="password" id="loginPassword" placeholder="Clave" class="form-input" required style="margin: 10px 0;">
+        <button type="submit" class="submit-btn" style="margin-top: 10px;">Ingresar</button>
+      </form>
+    </div>
+  </div>
+
+  <div class="modal-overlay" id="registerModal">
+    <div class="standard-modal-card">
+      <button class="close-modal" onclick="toggleModal('registerModal')">&times;</button>
+      <h3>Crear una cuenta</h3>
+      <p style="font-size: 0.85rem; color: var(--warning-red); margin-bottom: 10px; font-weight: 700;">Debes registrarte para poder realizar compras y dejar reseñas.</p>
+      <form onsubmit="handleRegister(event)">
+        <input type="text" id="regName" placeholder="Nombre completo" class="form-input" required style="margin: 8px 0;">
+        <input type="email" id="regEmail" placeholder="E-mail" class="form-input" required style="margin: 8px 0;">
+        <input type="password" id="regPassword" placeholder="Contraseña" class="form-input" required style="margin: 8px 0;">
+        <button type="submit" class="submit-btn" style="margin-top: 10px;">Registrarme</button>
+      </form>
+    </div>
+  </div>
+
+  <div class="modal-overlay" id="howToBuyModal">
+    <div class="standard-modal-card">
+      <button class="close-modal" onclick="toggleModal('howToBuyModal')">&times;</button>
+      <h3 style="text-align: center; margin-bottom: 15px; color: var(--rosa-vibrante);"><i class="fa-solid fa-cart-shopping"></i> ¿Cómo comprar?</h3>
+      <ul class="step-list">
+        <li><span class="step-number">1</span><strong>Registrate o Iniciá Sesión.</strong></li>
+        <li><span class="step-number">2</span><strong>Elegí tus Productos</strong> y agregalos al carrito o compralos directamente.</li>
+        <li><span class="step-number">3</span><strong>Seleccioná tu banco o billetera</strong> para ver el Alias.</li>
+        <li><span class="step-number">4</span><strong>Enviá el comprobante por WhatsApp</strong> para validar tu pedido.</li>
+      </ul>
+      <button class="submit-btn" onclick="toggleModal('howToBuyModal')">Entendido</button>
+    </div>
+  </div>
+
+  <!-- Carrito Lateral -->
+  <div class="cart-drawer" id="cartDrawer">
+    <div class="cart-header">
+      <h3 style="color: var(--rosa-vibrante);">Tu Carrito</h3>
+      <button class="close-modal" onclick="toggleCart()">&times;</button>
+    </div>
+    <div class="cart-items" id="cartItems"></div>
+    <div style="border-top: 2px solid var(--border-color); padding-top: 10px;">
+      <div style="display: flex; justify-content: space-between; font-weight: bold; margin-bottom: 15px; font-size: 1.1rem;">
+        <span>Total:</span>
+        <span id="cartTotal" style="color: var(--rosa-vibrante); font-family: 'Fredoka';">$0</span>
+      </div>
+      <button class="checkout-btn" onclick="startCheckoutFromCart()">
+        <i class="fa-solid fa-credit-card"></i> Pagar Pedido
+      </button>
+    </div>
+  </div>
+
+  <!-- Botones Flotantes -->
+  <div class="floating-buttons">
+    <a href="https://www.instagram.com/impresionfm/" target="_blank" class="float-btn ig" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+    <a href="https://wa.me/5493865432921" target="_blank" class="float-btn ws" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+  </div>
+
+  <footer>
+    <div class="footer-container">
+      <div>
+        <h4>Navegación</h4>
+        <p><a onclick="scrollToSection('hero')" style="cursor:pointer;">Inicio</a></p>
+        <p><a onclick="filterFormat('virtual')" style="cursor:pointer;">Productos Virtuales</a></p>
+        <p><a onclick="filterFormat('fisico')" style="cursor:pointer;">Productos Físicos</a></p>
+      </div>
+      <div>
+        <h4>Contacto</h4>
+        <p><i class="fa-regular fa-envelope"></i> Florenciamaturana626@gmail.com</p>
+      </div>
+      <div>
+        <h4>Pagos</h4>
+        <p><i class="fa-solid fa-credit-card"></i> Transferencias Bancarias / Mercado Pago / Ualá / BNA+ / Y TODOS LOS BANCOS</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const products = [
+      { id: 1, title: "PLANTILLA CANVA: FEED INSTAGRAM EMPRENDEDOR", format: "virtual", category: "canva", price: 3800, type: "Canva", image: "https://picsum.photos/seed/canva1/400/400", images: ["https://picsum.photos/seed/canva1/400/400", "https://picsum.photos/seed/canva1_sub1/400/400", "https://picsum.photos/seed/canva1_sub2/400/400"], reviews: [{author: "Lucía M.", rating: 5, comment: "¡Excelente plantilla, muy fácil de editar en Canva!"}, {author: "Marcos G.", rating: 4, comment: "Muy útil para mi negocio."}] },
+      { id: 2, title: "KIT EDITABLE: BOLSITAS Y CAJAS CUMPLEAÑOS", format: "virtual", category: "canva", price: 3200, type: "Canva", image: "https://picsum.photos/seed/canva2/400/400", images: ["https://picsum.photos/seed/canva2/400/400", "https://picsum.photos/seed/canva2_sub1/400/400"], reviews: [{author: "Valeria R.", rating: 5, comment: "Hermosos diseños para los cumpleaños."}] },
+      { id: 3, title: "PLANTILLA CANVA: AGENDAR CITAS Y TURNOS", format: "virtual", category: "canva", price: 2900, type: "Canva", image: "https://picsum.photos/seed/canva3/400/400", images: ["https://picsum.photos/seed/canva3/400/400", "https://picsum.photos/seed/canva3_sub1/400/400"], reviews: [] },
+      { id: 4, title: "PDF IMPRIMIBLE: LIBRO PARA COLOREAR MANDALAS", format: "virtual", category: "colorear", price: 1800, type: "PDF", image: "https://picsum.photos/seed/colorear1/400/400", images: ["https://picsum.photos/seed/colorear1/400/400"], reviews: [{author: "Sofía T.", rating: 5, comment: "Muy relajantes los diseños, los imprimí todos."}] },
+      { id: 5, title: "PDF IMPRIMIBLE: LIBRO PARA COLOREAR ANIMALITOS", format: "virtual", category: "colorear", price: 1800, type: "PDF", image: "https://picsum.photos/seed/colorear2/400/400", images: ["https://picsum.photos/seed/colorear2/400/400"], reviews: [] },
+      { id: 6, title: "PDF IMPRIMIBLE: AGENDA PERPETUA EDITABLE 2026", format: "virtual", category: "papeleria-digital", price: 3500, type: "PDF", image: "https://picsum.photos/seed/agenda1/400/400", images: ["https://picsum.photos/seed/agenda1/400/400", "https://picsum.photos/seed/agenda1_sub1/400/400"], reviews: [{author: "Carlos P.", rating: 5, comment: "La mejor agenda para organizar el año."}] },
+      { id: 7, title: "KIT IMPRIMIBLE: ETIQUETAS ESCOLARES PERSONALIZADAS", format: "virtual", category: "papeleria-digital", price: 2500, type: "PDF", image: "https://picsum.photos/seed/etiquetas/400/400", images: ["https://picsum.photos/seed/etiquetas/400/400"], reviews: [] },
+      { id: 8, title: "CAJITAS DÍA DEL ESTUDIANTE X4", format: "virtual", category: "papeleria-digital", price: 3040, type: "PDF", image: "https://picsum.photos/seed/cajitas/400/400", images: ["https://picsum.photos/seed/cajitas/400/400"], reviews: [] },
+      { id: 16, title: "PLANNER SEMANAL ORGANIZADOR (PDF EDITABLE)", format: "virtual", category: "papeleria-digital", price: 2200, type: "PDF", image: "https://picsum.photos/seed/planner1/400/400", images: ["https://picsum.photos/seed/planner1/400/400"], reviews: [] },
+
+      { id: 9, title: "LIBRO PARA COLOREAR ANIMALES (TAPA DURA FÍSICO)", format: "fisico", category: "libros-fisicos", price: 6500, type: "Físico", image: "https://picsum.photos/seed/libro-fisico1/400/400", images: ["https://picsum.photos/seed/libro-fisico1/400/400", "https://picsum.photos/seed/libro-fisico1_sub/400/400"], reviews: [{author: "Mariana L.", rating: 5, comment: "La calidad de la tapa dura es increíble."}] },
+      { id: 10, title: "LIBRO PARA COLOREAR MANGA Y ANIME (CON LÁPICES)", format: "fisico", category: "libros-fisicos", price: 8200, type: "Físico", image: "https://picsum.photos/seed/libro-fisico2/400/400", images: ["https://picsum.photos/seed/libro-fisico2/400/400"], reviews: [] },
+      { id: 11, title: "AGENDA ARTESANAL 2026 ENCUADERNADA A MANO", format: "fisico", category: "encuadernacion-fisica", price: 12500, type: "Físico", image: "https://picsum.photos/seed/agenda-fisica/400/400", images: ["https://picsum.photos/seed/agenda-fisica/400/400"], reviews: [{author: "Esteban K.", rating: 5, comment: "Se nota el trabajo artesanal, hermosa encuadernación."}] },
+      { id: 12, title: "CUADERNO PEDIDOS EMPRENDEDOR A5 (100 HOJAS)", format: "fisico", category: "encuadernacion-fisica", price: 7800, type: "Físico", image: "https://picsum.photos/seed/cuaderno-fisico/400/400", images: ["https://picsum.photos/seed/cuaderno-fisico/400/400"], reviews: [] },
+      { id: 13, title: "SET MANUALIDADES: Banderines y Adornos de Papel", format: "fisico", category: "manualidades", price: 5400, type: "Físico", image: "https://picsum.photos/seed/manualidades1/400/400", images: ["https://picsum.photos/seed/manualidades1/400/400"], reviews: [] },
+      { id: 14, title: "BOX REGALO PAPELERÍA: Stickers + Sticky Notes + Plumas", format: "fisico", category: "manualidades", price: 9900, type: "Físico", image: "https://picsum.photos/seed/box-papeleria/400/400", images: ["https://picsum.photos/seed/box-papeleria/400/400"], reviews: [{author: "Julieta B.", rating: 5, comment: "Vino con una presentación hermosa, ideal para regalar."}] },
+      { id: 15, title: "PACK 50 STICKERS IMPRESOS Y TROQUELADOS", format: "fisico", category: "manualidades", price: 3200, type: "Físico", image: "https://picsum.photos/seed/stickers-fisico/400/400", images: ["https://picsum.photos/seed/stickers-fisico/400/400"], reviews: [] },
+      { id: 17, title: "TAZA PERSONALIZADA CON DISEÑO Y CAJA REGALO", format: "fisico", category: "manualidades", price: 4800, type: "Físico", image: "https://picsum.photos/seed/taza1/400/400", images: ["https://picsum.photos/seed/taza1/400/400"], reviews: [] },
+
+      { id: 101, title: "SUPER COMBO EMPRENDEDOR COMPLETO", format: "fisico", category: "combos", price: 11500, type: "Combo", image: "https://picsum.photos/seed/combo1/400/400", images: ["https://picsum.photos/seed/combo1/400/400"], reviews: [] },
+      { id: 102, title: "MEGA PACK ESCOLAR VIRTUAL", format: "virtual", category: "combos", price: 5200, type: "Combo", image: "https://picsum.photos/seed/combo2/400/400", images: ["https://picsum.photos/seed/combo2/400/400"], reviews: [] }
+    ];
+
+    let currentFormat = 'all'; 
+    let currentCategory = 'all';
+    let currentProducts = [...products];
+    let cart = [];
+    let currentUser = null;
+    let selectedApp = "";
+    let checkoutItems = [];
+    let currentSelectedRating = 5;
+
+    let currentSlide = 0;
+    const totalSlides = 4;
+    let autoSlideInterval;
+    const VENDEDORA_EMAIL = "Florenciamaturana626@gmail.com";
+
+    function init() {
+      checkStoredSession();
+      renderCategories();
+      filterProductsMaster();
+      startAutoSlide();
+    }
+
+    function moveSlide(direction) {
+      currentSlide += direction;
+      if (currentSlide >= totalSlides) currentSlide = 0;
+      if (currentSlide < 0) currentSlide = totalSlides - 1;
+      updateCarouselUI();
+      resetAutoSlide();
+    }
+
+    function goToSlide(index) {
+      currentSlide = index;
+      updateCarouselUI();
+      resetAutoSlide();
+    }
+
+    function updateCarouselUI() {
+      const slides = document.getElementById('carouselSlides');
+      const dots = document.querySelectorAll('.carousel-dots .dot');
+      slides.style.transform = `translateX(-${currentSlide * 100}%)`;
+      dots.forEach((dot, idx) => dot.classList.toggle('active', idx === currentSlide));
+    }
+
+    function startAutoSlide() {
+      autoSlideInterval = setInterval(() => { moveSlide(1); }, 5000);
+    }
+
+    function resetAutoSlide() {
+      clearInterval(autoSlideInterval);
+      startAutoSlide();
+    }
+
+    function buyPromoCombo(title, price) {
+      if (!requireRegistration()) return;
+      checkoutItems = [{ id: Date.now(), title: title, price: price, type: "Combo Promo", qty: 1, format: "fisico" }];
+      getShippingCost();
+      toggleModal('paymentModal');
+    }
+
+    function checkStoredSession() {
+      const savedUser = localStorage.getItem('impresion_user');
+      if (savedUser) {
+        currentUser = JSON.parse(savedUser);
+        updateUserUI();
+      }
+    }
+
+    function updateUserUI() {
+      const display = document.getElementById('userDisplay');
+      const logoutBtn = document.getElementById('logoutBtn');
+      if (currentUser) {
+        display.textContent = ` (Hola, ${currentUser.name})`;
+        logoutBtn.style.display = 'inline';
+      } else {
+        display.textContent = '';
+        logoutBtn.style.display = 'none';
+      }
+    }
+
+    function logoutUser() {
+      localStorage.removeItem('impresion_user');
+      currentUser = null;
+      updateUserUI();
+      alert('Sesión cerrada correctamente.');
+    }
+
+    function handleUserIconClick() {
+      if (!currentUser) toggleModal('loginModal');
+      else alert(`Sesión activa: ${currentUser.name} (${currentUser.email})`);
+    }
+
+    function filterFormat(format) {
+      currentFormat = format;
+      currentCategory = 'all';
+      document.getElementById('btnTabAll').classList.toggle('active', format === 'all');
+      document.getElementById('btnTabVirtual').classList.toggle('active', format === 'virtual');
+      document.getElementById('btnTabFisico').classList.toggle('active', format === 'fisico');
+
+      const titleEl = document.getElementById('catalogTitle');
+      if (format === 'virtual') titleEl.textContent = "Productos Virtuales / Digitales";
+      else if (format === 'fisico') titleEl.textContent = "Productos Físicos / Artesanales";
+      else titleEl.textContent = "Todos los Productos";
+
+      renderCategories();
+      filterProductsMaster();
+    }
+
+    function renderCategories() {
+      const catContainer = document.getElementById('categoryList');
+      let html = `<button class="cat-btn ${currentCategory === 'all' ? 'active' : ''}" onclick="selectCategory('all', this)">TODOS</button>`;
+      html += `<button class="cat-btn ${currentCategory === 'combos' ? 'active' : ''}" onclick="selectCategory('combos', this)">🎁 COMBOS Y PROMOCIONES</button>`;
+
+      if (currentFormat === 'all' || currentFormat === 'virtual') {
+        html += `
+          <button class="cat-btn ${currentCategory === 'canva' ? 'active' : ''}" onclick="selectCategory('canva', this)">PLANTILLAS CANVA</button>
+          <button class="cat-btn ${currentCategory === 'colorear' ? 'active' : ''}" onclick="selectCategory('colorear', this)">COLOREAR (PDF)</button>
+          <button class="cat-btn ${currentCategory === 'papeleria-digital' ? 'active' : ''}" onclick="selectCategory('papeleria-digital', this)">PAPELERÍA DIGITAL</button>
+        `;
+      }
+      if (currentFormat === 'all' || currentFormat === 'fisico') {
+        html += `
+          <button class="cat-btn ${currentCategory === 'libros-fisicos' ? 'active' : ''}" onclick="selectCategory('libros-fisicos', this)">LIBROS PARA COLOREAR (FÍSICOS)</button>
+          <button class="cat-btn ${currentCategory === 'encuadernacion-fisica' ? 'active' : ''}" onclick="selectCategory('encuadernacion-fisica', this)">CUADERNOS Y AGENDAS</button>
+          <button class="cat-btn ${currentCategory === 'manualidades' ? 'active' : ''}" onclick="selectCategory('manualidades', this)">MANUALIDADES Y STICKERS</button>
+        `;
+      }
+      catContainer.innerHTML = html;
+    }
+
+    function selectCategory(cat, btn) {
+      document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      currentCategory = cat;
+      filterProductsMaster();
+    }
+
+    function filterProductsMaster() {
+      let filtered = [...products];
+      if (currentFormat !== 'all') filtered = filtered.filter(p => p.format === currentFormat);
+      if (currentCategory !== 'all') filtered = filtered.filter(p => p.category === currentCategory);
+
+      const searchVal = document.getElementById('searchInput').value.toLowerCase();
+      if (searchVal) filtered = filtered.filter(p => p.title.toLowerCase().includes(searchVal));
+
+      currentProducts = filtered;
+      sortProducts();
+    }
+
+    function filterProducts() { filterProductsMaster(); }
+
+    function renderProducts(items) {
+      const grid = document.getElementById('productsGrid');
+      if (items.length === 0) {
+        grid.innerHTML = '<p style="grid-column: 1/-1; text-align: center; color: var(--text-muted); padding: 40px 0; font-weight:700;">No se encontraron productos.</p>';
+        return;
+      }
+
+      grid.innerHTML = items.map(product => {
+        let badgeClass = 'pdf';
+        if (product.type === 'Canva') badgeClass = 'canva';
+        if (product.type === 'Físico') badgeClass = 'fisico';
+        if (product.type === 'Combo') badgeClass = 'combo';
+
+        let avgRating = 5;
+        if (product.reviews && product.reviews.length > 0) {
+          const sum = product.reviews.reduce((acc, r) => acc + r.rating, 0);
+          avgRating = (sum / product.reviews.length).toFixed(1);
+        }
+
+        return `
+          <div class="product-card">
+            <div class="card-header-bg">
+              ${product.format === 'fisico' ? 'PRODUCTO FÍSICO' : 'DESCARGA DIGITAL'}
+              <span class="badge ${badgeClass}">${product.type}</span>
+            </div>
+            <div class="product-clickable-area" onclick="openProductDetail(${product.id})">
+              <img src="${product.image}" alt="${product.title}">
+            </div>
+            <div class="card-body">
+              <div>
+                <div class="product-title" onclick="openProductDetail(${product.id})">${product.title}</div>
+                <div style="font-size: 0.82rem; color: #ffc107; margin-bottom: 5px; font-weight:700;">
+                  <i class="fa-solid fa-star"></i> ${avgRating} (${product.reviews ? product.reviews.length : 0} reseñas)
+                </div>
+                <div class="product-price">$${product.price.toLocaleString()}</div>
+                <div class="product-installments">Hasta 3 cuotas sin interés</div>
+              </div>
+              <div class="card-buttons-group">
+                <button class="add-to-cart-btn" onclick="buySingleProduct(${product.id})">Comprar ahora</button>
+                <button class="add-cart-secondary-btn" onclick="addToCartOnly(${product.id})">
+                  <i class="fa-solid fa-cart-plus"></i> Al carrito
+                </button>
+              </div>
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    function sortProducts() {
+      const sortValue = document.getElementById('sortSelect').value;
+      let sorted = [...currentProducts];
+      if (sortValue === 'low-high') sorted.sort((a, b) => a.price - b.price);
+      else if (sortValue === 'high-low') sorted.sort((a, b) => b.price - a.price);
+      else sorted.sort((a, b) => b.id - a.id);
+      renderProducts(sorted);
+    }
+
+    function openProductDetail(id) {
+      const product = products.find(p => p.id === id);
+      if (!product) return;
+
+      const detailContent = document.getElementById('productDetailContent');
+      const imgList = product.images && product.images.length > 0 ? product.images : [product.image];
+
+      let avgRating = 5;
+      if (product.reviews && product.reviews.length > 0) {
+        const sum = product.reviews.reduce((acc, r) => acc + r.rating, 0);
+        avgRating = (sum / product.reviews.length).toFixed(1);
+      }
+
+      let htmlReviews = '';
+      if (product.reviews && product.reviews.length > 0) {
+        htmlReviews = product.reviews.map(r => `
+          <div class="review-item">
+            <div class="review-author">
+              <span>${r.author}</span>
+              <span class="review-stars">${'★'.repeat(r.rating)}</span>
+            </div>
+            <p style="margin-top: 4px; color: var(--text-dark);">${r.comment}</p>
+          </div>
+        `).join('');
+      } else {
+        htmlReviews = '<p style="font-size: 0.88rem; color: var(--text-muted);">Sé el primero en dejar un comentario o reseña.</p>';
+      }
+
+      detailContent.innerHTML = `
+        <div>
+          <img src="${imgList[0]}" id="mainPreviewImg" class="detail-img-main" alt="${product.title}">
+          <div class="detail-thumbnails">
+            ${imgList.map((img, idx) => `<img src="${img}" class="detail-thumb ${idx === 0 ? 'active' : ''}" onclick="changePreviewImage(this, '${img}')">`).join('')}
+          </div>
+        </div>
+        <div class="detail-info">
+          <span style="font-size: 0.75rem; background: var(--bg-rosa-soft); color: var(--rosa-vibrante); font-weight:800; padding: 3px 8px; border-radius: 6px;">${product.type}</span>
+          <h3 style="margin-top: 8px;">${product.title}</h3>
+          <div class="rating-stars-display">
+            <i class="fa-solid fa-star"></i> <strong>${avgRating}</strong> 
+            <span style="color: var(--text-muted); font-size: 0.85rem;">(${product.reviews ? product.reviews.length : 0} opiniones)</span>
+          </div>
+          <div class="detail-price">$${product.price.toLocaleString()}</div>
+          <p style="font-size: 0.88rem; color: var(--text-muted); margin-bottom: 15px; font-weight:600;">Hasta 3 cuotas sin interés. Envío digital inmediato o despacho físico.</p>
+          
+          <div style="display: flex; gap: 10px;">
+            <button class="add-to-cart-btn" onclick="buySingleProduct(${product.id}); toggleModal('productDetailModal');">Comprar ahora</button>
+            <button class="add-cart-secondary-btn" onclick="addToCartOnly(${product.id}); toggleModal('productDetailModal');"><i class="fa-solid fa-cart-plus"></i></button>
+          </div>
+
+          <div class="reviews-section">
+            <h4>Opiniones y Comentarios</h4>
+            <div style="max-height: 140px; overflow-y: auto; margin-bottom: 12px;">
+              ${htmlReviews}
+            </div>
+
+            <form class="review-form" onsubmit="submitReview(event, ${product.id})">
+              <span style="font-size: 0.85rem; font-weight: bold; color: var(--text-dark);">Calificá este producto:</span>
+              <div class="star-select-input" id="starSelector">
+                <span class="star selected" onclick="setReviewRating(1)">★</span>
+                <span class="star selected" onclick="setReviewRating(2)">★</span>
+                <span class="star selected" onclick="setReviewRating(3)">★</span>
+                <span class="star selected" onclick="setReviewRating(4)">★</span>
+                <span class="star selected" onclick="setReviewRating(5)">★</span>
+              </div>
+              <input type="text" id="reviewCommentText" placeholder="Escribí tu comentario..." class="form-input" required>
+              <button type="submit" class="submit-btn" style="font-size: 0.88rem; padding: 8px;">Enviar Comentario</button>
+            </form>
+          </div>
+        </div>
+      `;
+
+      currentSelectedRating = 5;
+      toggleModal('productDetailModal');
+    }
+
+    function changePreviewImage(thumbEl, imgSrc) {
+      document.getElementById('mainPreviewImg').src = imgSrc;
+      document.querySelectorAll('.detail-thumb').forEach(t => t.classList.remove('active'));
+      thumbEl.classList.add('active');
+    }
+
+    function setReviewRating(rating) {
+      currentSelectedRating = rating;
+      const stars = document.querySelectorAll('#starSelector .star');
+      stars.forEach((s, idx) => {
+        if (idx < rating) s.classList.add('selected');
+        else s.classList.remove('selected');
+      });
+    }
+
+    function submitReview(event, productId) {
+      event.preventDefault();
+      if (!currentUser) {
+        alert("Debes iniciar sesión o registrarte para dejar una reseña.");
+        toggleModal('productDetailModal');
+        toggleModal('registerModal');
+        return;
+      }
+
+      const commentText = document.getElementById('reviewCommentText').value;
+      const product = products.find(p => p.id === productId);
+
+      if (!product.reviews) product.reviews = [];
+      product.reviews.push({
+        author: currentUser.name,
+        rating: currentSelectedRating,
+        comment: commentText
+      });
+
+      alert("¡Gracias por tu comentario!");
+      openProductDetail(productId);
+      renderProducts(currentProducts);
+    }
+
+    function requireRegistration() {
+      if (!currentUser) {
+        alert("Para realizar una compra es obligatorio registrarse o iniciar sesión.");
+        toggleModal('registerModal');
+        return false;
+      }
+      return true;
+    }
+
+    function addToCartOnly(id) {
+      const product = products.find(p => p.id === id);
+      const existing = cart.find(i => i.id === id);
+      if (existing) existing.qty += 1;
+      else cart.push({ ...product, qty: 1 });
+
+      updateCartUI();
+      showToastNotification(`¡"${product.title}" agregado al carrito!`);
+    }
+
+    function showToastNotification(message) {
+      const toast = document.getElementById('toastNotification');
+      const text = document.getElementById('toastText');
+      text.textContent = message;
+      toast.style.display = 'flex';
+      setTimeout(() => { toast.style.display = 'none'; }, 3000);
+    }
+
+    function buySingleProduct(id) {
+      if (!requireRegistration()) return;
+      const product = products.find(p => p.id === id);
+      checkoutItems = [{ ...product, qty: 1 }];
+      getShippingCost();
+      toggleModal('paymentModal');
+    }
+
+    function startCheckoutFromCart() {
+      if (cart.length === 0) return alert('Tu carrito está vacío');
+      if (!requireRegistration()) return;
+      checkoutItems = [...cart];
+      toggleCart(false);
+      getShippingCost();
+      toggleModal('paymentModal');
+    }
+
+    // Funciones de Envío integradas
+    function updateDeliveryCost() {
+      const total = checkoutItems.reduce((acc, item) => acc + (item.price * item.qty), 0) + getShippingCost();
+      document.getElementById('aliasTotalDisplay').textContent = `$${total.toLocaleString()}`;
+    }
+
+    function getShippingCost() {
+      const hasPhysical = checkoutItems && checkoutItems.some(item => item.format === 'fisico' || item.isPhysical === true);
+      const deliverySection = document.getElementById('deliverySection');
+      
+      if (!deliverySection) return 0;
+
+      if (hasPhysical) {
+        deliverySection.style.display = 'block';
+        const selected = document.querySelector('input[name="deliveryMethod"]:checked');
+        if (selected && selected.value === 'correo') {
+          return 1000; 
+        }
+      } else {
+        deliverySection.style.display = 'none'; 
+      }
+      return 0;
+    }
+
+    function selectPaymentApp(appName) {
+      selectedApp = appName;
+      document.getElementById('selectedAppDisplay').textContent = appName;
+      const total = checkoutItems.reduce((acc, item) => acc + (item.price * item.qty), 0) + getShippingCost();
+      document.getElementById('aliasTotalDisplay').textContent = `$${total.toLocaleString()}`;
+      switchModal('paymentModal', 'aliasModal');
+    }
+
+    function copyAlias() {
+      navigator.clipboard.writeText("Impresionfmx").then(() => alert('¡Alias copiado!'));
+    }
+
+    function sendProofWhatsApp() {
+      const phone = "5493865432921"; 
+      const shipping = getShippingCost();
+      const subtotal = checkoutItems.reduce((acc, item) => acc + (item.price * item.qty), 0);
+      const total = subtotal + shipping;
+      
+      let text = `¡Hola! Acabo de hacer un pedido en la tienda.\n\n`;
+      text += `*Detalle de la compra:*\n`;
+      checkoutItems.forEach(item => {
+          text += `- ${item.title} (x${item.qty}): $${item.price * item.qty}\n`;
+      });
+      
+      if (shipping > 0) {
+          text += `- Envío por Correo Argentino: $${shipping}\n`;
+      }
+      
+      text += `\n*Total a pagar:* $${total}\n`;
+      text += `Transferí al Alias *IMPRESION25.MERC*. Adjunto mi comprobante por acá.`;
+
+      const encodedText = encodeURIComponent(text);
+      window.open(`https://wa.me/${phone}?text=${encodedText}`, '_blank');
+    }
+
+    function updateCartUI() {
+      const cartItems = document.getElementById('cartItems');
+      const cartCount = document.getElementById('cartCount');
+      const cartTotal = document.getElementById('cartTotal');
+
+      cartCount.textContent = cart.reduce((acc, item) => acc + item.qty, 0);
+
+      if (cart.length === 0) {
+        cartItems.innerHTML = '<p style="text-align: center; color: var(--text-muted); margin-top: 20px; font-weight:600;">El carrito está vacío</p>';
+        cartTotal.textContent = '$0';
+        return;
+      }
+
+      cartItems.innerHTML = cart.map(item => `
+        <div class="cart-item">
+          <div>
+            <strong>${item.title}</strong><br>
+            <small>$${item.price.toLocaleString()} x ${item.qty}</small>
+          </div>
+          <div style="display: flex; gap: 5px; align-items: center;">
+            <button onclick="changeQty(${item.id}, -1)" style="padding: 2px 8px; border-radius: 4px; border: 1px solid #ccc; cursor: pointer;">-</button>
+            <button onclick="changeQty(${item.id}, 1)" style="padding: 2px 8px; border-radius: 4px; border: 1px solid #ccc; cursor: pointer;">+</button>
+          </div>
+        </div>
+      `).join('');
+
+      const total = cart.reduce((acc, item) => acc + (item.price * item.qty), 0);
+      cartTotal.textContent = `$${total.toLocaleString()}`;
+    }
+
+    function changeQty(id, delta) {
+      const item = cart.find(i => i.id === id);
+      if (item) {
+        item.qty += delta;
+        if (item.qty <= 0) cart = cart.filter(i => i.id !== id);
+      }
+      updateCartUI();
+    }
+
+    function toggleCart(forceOpen = false) {
+      const drawer = document.getElementById('cartDrawer');
+      if (forceOpen) drawer.classList.add('open');
+      else drawer.classList.toggle('open');
+    }
+
+    function toggleModal(modalId) {
+      document.getElementById(modalId).classList.toggle('active');
+    }
+
+    function switchModal(currentId, targetId) {
+      toggleModal(currentId);
+      toggleModal(targetId);
+    }
+
+    function openHowToBuy() {
+      toggleModal('howToBuyModal');
+    }
+
+    function handleLogin(event) {
+      event.preventDefault();
+      const email = document.getElementById('loginEmail').value;
+      currentUser = { name: email.split('@')[0], email: email };
+      localStorage.setItem('impresion_user', JSON.stringify(currentUser));
+      updateUserUI();
+      alert(`¡Bienvenido/a, ${currentUser.name}!`);
+      toggleModal('loginModal');
+    }
+
+    function handleRegister(event) {
+      event.preventDefault();
+      const name = document.getElementById('regName').value;
+      const email = document.getElementById('regEmail').value;
+      currentUser = { name: name, email: email };
+      localStorage.setItem('impresion_user', JSON.stringify(currentUser));
+      updateUserUI();
+      alert(`¡Cuenta creada con éxito, ${name}!`);
+      toggleModal('registerModal');
+    }
+
+    function scrollToSection(id) {
+      document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
+    }
+
+    init();
+  </script>
+</body>
+</html>
