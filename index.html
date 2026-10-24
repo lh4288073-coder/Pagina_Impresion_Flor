@@ -1428,100 +1428,7 @@
     <button class="add-to-cart-btn" style="width: auto; padding: 10px 20px;" onclick="openHowToBuy()">Ver Paso a Paso</button>
   </div>
 
-  <!-- CARRUSEL RECTANGULAR DE COMBOS Y PROMOCIONES -->
-  <div class="combos-carousel-container">
-    <div class="carousel-wrapper">
-      <button class="carousel-btn prev" onclick="moveSlide(-1)" aria-label="Anterior"><i class="fa-solid fa-chevron-left"></i></button>
-
-      <div class="carousel-slides" id="carouselSlides">
-        <div class="slide-item">
-          <div class="slide-content">
-            <span class="slide-badge">SUPER COMBO FÍSICO + VIRTUAL</span>
-            <h2 class="slide-title">Combo Emprendedor Digital & Papelería</h2>
-            <p class="slide-description">Incluye: Plantillas Canva de Feed Instagram + Cuaderno de Pedidos A5 Tapa Dura + Pack 50 Stickers Troquelados.</p>
-            <div class="slide-price-box">
-              <span class="price-old">$14.800</span>
-              <span class="price-new">$11.500</span>
-            </div>
-            <button class="add-to-cart-btn" style="width: auto; padding: 10px 24px;" onclick="buyPromoCombo('COMBO EMPRENDEDOR COMPLETO', 11500)">¡Aprovechar Promo!</button>
-          </div>
-          <div class="slide-img-box">
-            <img src="https://picsum.photos/seed/combo1/500/300" alt="Combo Emprendedor">
-          </div>
-        </div>
-
-        <div class="slide-item">
-          <div class="slide-content">
-            <span class="slide-badge">PROMO VIRTUAL DESCARGABLE</span>
-            <h2 class="slide-title">Mega Pack Escolar Editables & Colorear</h2>
-            <p class="slide-description">Llevate el Kit de Etiquetas Escolares + Libro para Colorear Animalitos (PDF) + Agenda Perpetua Imprimible.</p>
-            <div class="slide-price-box">
-              <span class="price-old">$7.800</span>
-              <span class="price-new">$5.200</span>
-            </div>
-            <button class="add-to-cart-btn" style="width: auto; padding: 10px 24px;" onclick="buyPromoCombo('MEGA PACK ESCOLAR VIRTUAL', 5200)">Comprar Pack Digital</button>
-          </div>
-          <div class="slide-img-box">
-            <img src="https://picsum.photos/seed/combo2/500/300" alt="Pack Escolar">
-          </div>
-        </div>
-
-        <div class="slide-item">
-          <div class="slide-content">
-            <span class="slide-badge">COMBO PAPELERÍA FÍSICA</span>
-            <h2 class="slide-title">Combo Arte & Creatividad Artesanal</h2>
-            <p class="slide-description">Incluye Libro para Colorear Manga/Anime + Set de Lápices + Box de Papelería con Sticky Notes y Plumas.</p>
-            <div class="slide-price-box">
-              <span class="price-old">$18.100</span>
-              <span class="price-new">$14.900</span>
-            </div>
-            <button class="add-to-cart-btn" style="width: auto; padding: 10px 24px;" onclick="buyPromoCombo('COMBO ARTE & CREATIVIDAD', 14900)">Llevar Promo Física</button>
-          </div>
-          <div class="slide-img-box">
-            <img src="https://picsum.photos/seed/combo3/500/300" alt="Combo Papelería">
-          </div>
-        </div>
-
-        <div class="slide-item">
-          <div class="slide-content">
-            <span class="slide-badge">EDICIÓN LIMITADA</span>
-            <h2 class="slide-title">Kit Organizador Semanal & Citas</h2>
-            <p class="slide-description">Agenda Artesanal 2026 Encuadernada a Mano + Plantilla Canva Citas y Turnos + Planner de Notas impreso.</p>
-            <div class="slide-price-box">
-              <span class="price-old">$15.400</span>
-              <span class="price-new">$12.200</span>
-            </div>
-            <button class="add-to-cart-btn" style="width: auto; padding: 10px 24px;" onclick="buyPromoCombo('KIT ORGANIZADOR COMPLETO 2026', 12200)">Comprar Ahora</button>
-          </div>
-          <div class="slide-img-box">
-            <img src="https://picsum.photos/seed/combo4/500/300" alt="Kit Organizador">
-          </div>
-        </div>
-      </div>
-
-      <button class="carousel-btn next" onclick="moveSlide(1)" aria-label="Siguiente"><i class="fa-solid fa-chevron-right"></i></button>
-
-      <div class="carousel-dots" id="carouselDots">
-        <span class="dot active" onclick="goToSlide(0)"></span>
-        <span class="dot" onclick="goToSlide(1)"></span>
-        <span class="dot" onclick="goToSlide(2)"></span>
-        <span class="dot" onclick="goToSlide(3)"></span>
-      </div>
-    </div>
-  </div>
-
-  <!-- SECCIÓN: LO MÁS VIRAL -->
-  <section class="viral-section">
-    <div class="viral-header">
-      <h2><i class="fa-solid fa-fire" style="color: var(--rosa-vibrante);"></i> LO MÁS VIRAL</h2>
-    </div>
-
-    <div class="viral-card">
-     <div class="viral-video-box">
-    <video autoplay muted loop playsinline style="width: 100%; height: 100%; object-fit: cover;">
-        <source src="video_viral.mp4" type="video/mp4">
-        Tu navegador no soporta la reproducción de video.
-    </video>
+  
 </div>
 
       <div class="viral-info">
@@ -1719,15 +1626,8 @@
 
   <script>
     const products = [
-      { id: 1, title: "LANTILLA CANVA: FEED INSTAGR ", format: "virtual", category: "canva", price: 3800, type: "Canva", image: "https://picsum.photos/seed/canva1/400/400", images: ["https://picsum.photos/seed/canva1/400/400", "https://picsum.photos/seed/canva1_sub1/400/400", "https://picsum.photos/seed/canva1_sub2/400/400"], reviews: [{author: "Lucía M.", rating: 5, comment: "¡Excelente plantilla, muy fácil de editar en Canva!"}, {author: "Marcos G.", rating: 4, comment: "Muy útil para mi negocio."}] },
-      { id: 2, title: "KIT EDITABLE: BOLSITAS Y CAJAS CUMPLEAÑOS", format: "virtual", category: "canva", price: 3200, type: "Canva", image: "https://picsum.photos/seed/canva2/400/400", images: ["https://picsum.photos/seed/canva2/400/400", "https://picsum.photos/seed/canva2_sub1/400/400"], reviews: [{author: "Valeria R.", rating: 5, comment: "Hermosos diseños para los cumpleaños."}] },
-      { id: 3, title: "PLANTILLA CANVA: AGENDAR CITAS Y TURNOS", format: "virtual", category: "canva", price: 2900, type: "Canva", image: "https://picsum.photos/seed/canva3/400/400", images: ["https://picsum.photos/seed/canva3/400/400", "https://picsum.photos/seed/canva3_sub1/400/400"], reviews: [] },
-      { id: 4, title: "PDF IMPRIMIBLE: LIBRO PARA COLOREAR MANDALAS", format: "virtual", category: "colorear", price: 1800, type: "PDF", image: "https://picsum.photos/seed/colorear1/400/400", images: ["https://picsum.photos/seed/colorear1/400/400"], reviews: [{author: "Sofía T.", rating: 5, comment: "Muy relajantes los diseños, los imprimí todos."}] },
-      { id: 5, title: "PDF IMPRIMIBLE: LIBRO PARA COLOREAR ANIMALITOS", format: "virtual", category: "colorear", price: 1800, type: "PDF", image: "https://picsum.photos/seed/colorear2/400/400", images: ["https://picsum.photos/seed/colorear2/400/400"], reviews: [] },
-      { id: 6, title: "PDF IMPRIMIBLE: AGENDA PERPETUA EDITABLE 2026", format: "virtual", category: "papeleria-digital", price: 3500, type: "PDF", image: "https://picsum.photos/seed/agenda1/400/400", images: ["https://picsum.photos/seed/agenda1/400/400", "https://picsum.photos/seed/agenda1_sub1/400/400"], reviews: [{author: "Carlos P.", rating: 5, comment: "La mejor agenda para organizar el año."}] },
-      { id: 7, title: "KIT IMPRIMIBLE: ETIQUETAS ESCOLARES PERSONALIZADAS", format: "virtual", category: "papeleria-digital", price: 2500, type: "PDF", image: "https://picsum.photos/seed/etiquetas/400/400", images: ["https://picsum.photos/seed/etiquetas/400/400"], reviews: [] },
-      { id: 8, title: "CAJITAS DÍA DEL ESTUDIANTE X4", format: "virtual", category: "papeleria-digital", price: 3040, type: "PDF", image: "https://picsum.photos/seed/cajitas/400/400", images: ["https://picsum.photos/seed/cajitas/400/400"], reviews: [] },
-      { id: 16, title: "PLANNER SEMANAL ORGANIZADOR (PDF EDITABLE)", format: "virtual", category: "papeleria-digital", price: 2200, type: "PDF", image: "https://picsum.photos/seed/planner1/400/400", images: ["https://picsum.photos/seed/planner1/400/400"], reviews: [] },
+     
+      
 
       { id: 9, title: "PLANNERS SEMANAL INMANTADO A4", format: "fisico", category: "libros-fisicos", price: 5500, type: "Físico", image: "imagenes flor/WhatsApp Image 2026-09-30 at 17.52.47.jpeg", images: ["https://picsum.photos/seed/libro-fisico1/400/400", "https://picsum.photos/seed/libro-fisico1_sub/400/400"], reviews: [{author: "Mariana L.", rating: 5, comment: "La calidad de la tapa dura es increíble."}] },
       { id: 10, title: "PACK DE SOUVENIRS INMANTADOS", format: "fisico", category: "libros-fisicos", price: 8200, type: "Físico", image: "imagenes flor/WhatsApp Image 2026-09-30 at 17.52.48.jpeg", images: ["https://picsum.photos/seed/libro-fisico2/400/400"], reviews: [] },
@@ -1738,8 +1638,8 @@
       { id: 15, title: "TAZAS CERAMICA PREMIUM IMPORTADA GRANDE", format: "fisico", category: "manualidades", price: 12500, type: "Físico", image: "imagenes flor/WhatsApp Image 2026-10-01 at 23.32.43 (5).jpeg", images: ["https://picsum.photos/seed/stickers-fisico/400/400"], reviews: [] },
       { id: 17, title: "FICHERO PERSONALIZADO", format: "fisico", category: "manualidades", price: 18000, type: "Físico", image: "imagenes flor/WhatsApp Image 2026-10-01 at 23.32.43 (1).jpeg", images: ["https://picsum.photos/seed/taza1/400/400"], reviews: [] },
 
-      { id: 101, title: "SUPER COMBO EMPRENDEDOR COMPLETO", format: "fisico", category: "combos", price: 11500, type: "Combo", image: "https://picsum.photos/seed/combo1/400/400", images: ["https://picsum.photos/seed/combo1/400/400"], reviews: [] },
-      { id: 102, title: "MEGA PACK ESCOLAR VIRTUAL", format: "virtual", category: "combos", price: 5200, type: "Combo", image: "https://picsum.photos/seed/combo2/400/400", images: ["https://picsum.photos/seed/combo2/400/400"], reviews: [] }
+       
+      
     ];
 
     let currentFormat = 'all'; 
