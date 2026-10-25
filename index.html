@@ -1736,25 +1736,12 @@
       filterProductsMaster();
     }
 
-    function renderCategories() {
+   function renderCategories() {
       const catContainer = document.getElementById('categoryList');
-      let html = `<button class="cat-btn ${currentCategory === 'all' ? 'active' : ''}" onclick="selectCategory('all', this)">TODOS</button>`;
-      html += `<button class="cat-btn ${currentCategory === 'combos' ? 'active' : ''}" onclick="selectCategory('combos', this)">🎁 COMBOS Y PROMOCIONES</button>`;
-
-      if (currentFormat === 'all' || currentFormat === 'virtual') {
-        html += `
-          <button class="cat-btn ${currentCategory === 'canva' ? 'active' : ''}" onclick="selectCategory('canva', this)">PLANTILLAS CANVA</button>
-          <button class="cat-btn ${currentCategory === 'colorear' ? 'active' : ''}" onclick="selectCategory('colorear', this)">COLOREAR (PDF)</button>
-          <button class="cat-btn ${currentCategory === 'papeleria-digital' ? 'active' : ''}" onclick="selectCategory('papeleria-digital', this)">PAPELERÍA DIGITAL</button>
-        `;
-      }
-      if (currentFormat === 'all' || currentFormat === 'fisico') {
-        html += `
-          <button class="cat-btn ${currentCategory === 'libros-fisicos' ? 'active' : ''}" onclick="selectCategory('libros-fisicos', this)">LIBROS PARA COLOREAR (FÍSICOS)</button>
-          <button class="cat-btn ${currentCategory === 'encuadernacion-fisica' ? 'active' : ''}" onclick="selectCategory('encuadernacion-fisica', this)">CUADERNOS Y AGENDAS</button>
-          <button class="cat-btn ${currentCategory === 'manualidades' ? 'active' : ''}" onclick="selectCategory('manualidades', this)">MANUALIDADES Y STICKERS</button>
-        `;
-      }
+      let html = '';
+      
+      html += `<button class="cat-btn" onclick="filterFormat('fisico')">Productos Físicos</button>`;
+      
       catContainer.innerHTML = html;
     }
 
