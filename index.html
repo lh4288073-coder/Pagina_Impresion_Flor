@@ -2052,15 +2052,17 @@
       
       let text = `¡Hola! Acabo de hacer un pedido en la tienda.\n\n`;
       text += `*Detalle de la compra:*\n`;
+      
       checkoutItems.forEach(item => {
-          text += `- ${item.title} (x${item.qty}): $${item.price * item.qty}\n`;
+          // Muestra el nombre, la cantidad, el precio por unidad y el subtotal de ese producto
+          text += `- *${item.title}* (x${item.qty}) - $${item.price.toLocaleString()} c/u (Subtotal: $${(item.price * item.qty).toLocaleString()})\n`;
       });
       
       if (shipping > 0) {
-          text += `- Envío por Correo Argentino: $${shipping}\n`;
+          text += `- Envío por Correo: $${shipping.toLocaleString()}\n`;
       }
       
-      text += `\n*Total a pagar:* $${total}\n`;
+      text += `\n*Total a pagar:* $${total.toLocaleString()}\n`;
       text += `Transferí al Alias *IMPRESION25.MERC*. Adjunto mi comprobante por acá.`;
 
       const encodedText = encodeURIComponent(text);
