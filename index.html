@@ -18,23 +18,23 @@
        1. VARIABLES Y ESTILOS GLOBALES (EQUILIBRIO 50/50 CELESTE Y ROSA)
        ========================================================================== */
     :root {
-      --primary-celeste: #85ccee;
-      --primary-celeste-deep: #008cd6;
-      --primary-rosa: #ff80bf;
-      --rosa-vibrante: #e6007e;
-      --bg-celeste-soft: #f0f8ff;
-      --bg-rosa-soft: #fff0f6;
-      --text-dark: #2d3748;
-      --text-muted: #718096;
-      --border-color: #fce7f3;
-      --white: #ffffff;
-      
-      --badge-pdf: #ff5252;
-      --badge-canva: #20c997;
-      --badge-fisico: #ff9f43;
-      --badge-combo: #a55eea;
-      --warning-red: #d9534f;
-    }
+  --primary-celeste: #7BBCE8;       /* Azul pastel */
+  --primary-celeste-deep: #2E4A21;  /* Verde oliva oscuro principal */
+  --primary-rosa: #76A058;         /* Reemplazo de rosa por verde claro */
+  --rosa-vibrante: #2E4A21;        /* Para textos destacados en verde oscuro */
+  --bg-celeste-soft: #FDFBF2;      /* Fondo crema suave */
+  --bg-rosa-soft: #FDFBF2;         /* Fondo crema suave */
+  --text-dark: #2E4A21;            /* Texto principal verde oscuro */
+  --text-muted: #5A734C;           /* Texto secundario en verde suave */
+  --border-color: #D4E2C9;         /* Bordes sutiles en tono verdoso */
+  --white: #ffffff;
+
+  --badge-pdf: #ff5252;
+  --badge-canva: #20c997;
+  --badge-fisico: #7BBCE8;         
+  --badge-combo: #76A058;          
+  --warning-red: #d9534f;
+}
 
     * {
       box-sizing: border-box;
@@ -115,14 +115,14 @@
       letter-spacing: 0.5px;
     }
 
-    header {
-      background-color: rgba(255, 255, 255, 0.95);
-      backdrop-filter: blur(10px);
-      border-bottom: 2px solid #ffd1dc;
-      position: sticky;
-      top: 0;
-      z-index: 100;
-    }
+   header {
+  background-color: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  border-bottom: 2px solid #76A058; /* Línea inferior actualizada al verde claro de la paleta */
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
 
     .header-container {
       max-width: 1200px;
@@ -272,7 +272,7 @@
       background: linear-gradient(135deg, rgba(227, 242, 253, 0.9) 0%, rgba(255, 240, 246, 0.9) 100%);
       padding: 40px 20px;
       text-align: center;
-      border-bottom: 3px solid #ffd1dc;
+      border-bottom: 3px solid #76A058;
     }
 
     .hero-title-container {
@@ -285,37 +285,37 @@
     }
 
     .hero-title-container .impre {
-      font-family: 'Fredoka', sans-serif;
-      font-size: 4.2rem;
-      font-weight: 900;
-      color: #008cd6;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      -webkit-text-stroke: 4px #ffffff;
-      text-shadow: 
-        3px 3px 0px #005a9c,
-        5px 5px 0px #003a66,
-        7px 7px 12px rgba(0,0,0,0.2);
-      position: relative;
-      z-index: 2;
-    }
+  font-family: 'Fredoka', sans-serif;
+  font-size: 4.2rem;
+  font-weight: 900;
+  color: #2E4A21;                  /* Verde oliva oscuro principal */
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  -webkit-text-stroke: 4px #ffffff;
+  text-shadow: 
+    3px 3px 0px #76A058,         /* Verde claro de sombra */
+    5px 5px 0px #1E3215,         /* Verde aún más oscuro para profundidad */
+    7px 7px 12px rgba(0,0,0,0.2);
+  position: relative;
+  z-index: 2;
+}
 
-    .hero-title-container .sion {
-      font-family: 'Caveat', cursive;
-      font-size: 5.5rem;
-      font-weight: 700;
-      color: #e6007e;
-      margin-left: -12px;
-      transform: rotate(-5deg);
-      display: inline-block;
-      -webkit-text-stroke: 3px #ffffff;
-      text-shadow: 
-        2px 2px 0px #b30062,
-        4px 4px 0px #70003d,
-        6px 6px 10px rgba(0,0,0,0.2);
-      position: relative;
-      z-index: 3;
-    }
+.hero-title-container .sion {
+  font-family: 'Caveat', cursive;
+  font-size: 5.5rem;
+  font-weight: 700;
+  color: #76A058;                  /* Verde claro para la parte cursiva */
+  margin-left: -12px;
+  transform: rotate(-5deg);
+  display: inline-block;
+  -webkit-text-stroke: 3px #ffffff;
+  text-shadow: 
+    2px 2px 0px #2E4A21,         /* Verde oliva oscuro de sombra */
+    4px 4px 0px #1E3215,         
+    6px 6px 10px rgba(0,0,0,0.2);
+  position: relative;
+  z-index: 3;
+}
 
     .hero-logo-container {
       margin: 15px auto 15px;
@@ -324,15 +324,15 @@
     }
 
     .hero-logo-img {
-      max-width: 300px;
-      width: 100%;
-      height: auto;
-      border-radius: 50%;
-      padding: 6px;
-      background: linear-gradient(135deg, var(--primary-celeste) 0%, #ffffff 50%, var(--primary-rosa) 100%);
-      box-shadow: 0 10px 25px rgba(255, 128, 191, 0.35);
-      animation: floatLogo 4s ease-in-out infinite;
-    }
+  max-width: 300px;
+  width: 100%;
+  height: auto;
+  border-radius: 50%;
+  padding: 6px;
+  background: linear-gradient(135deg, var(--primary-celeste) 0%, #ffffff 50%, var(--primary-rosa) 100%);
+  box-shadow: 0 10px 25px rgba(118, 160, 88, 0.35); /* Sombra en tono verde claro acorde al nuevo diseño */
+  animation: floatLogo 4s ease-in-out infinite;
+}
 
     @keyframes floatLogo {
       0%, 100% { transform: translateY(0px); }
@@ -370,27 +370,27 @@
       gap: 8px;
     }
 
-    .tab-btn.active, .tab-btn:hover {
-      background: linear-gradient(135deg, var(--primary-celeste), var(--primary-rosa));
-      color: white;
-      border-color: transparent;
-      box-shadow: 0 4px 12px rgba(230, 0, 126, 0.25);
-    }
+   .tab-btn.active, .tab-btn:hover {
+  background: linear-gradient(135deg, #76A058, #2E4A21);
+  color: white;
+  border-color: transparent;
+  box-shadow: 0 4px 12px rgba(118, 160, 88, 0.35); /* Sombra en verde claro */
+}
 
-    .info-payment-banner {
-      max-width: 1200px;
-      margin: 30px auto 25px auto;
-      padding: 20px 25px;
-      background: linear-gradient(135deg, var(--bg-celeste-soft) 0%, var(--bg-rosa-soft) 100%);
-      border-left: 6px solid var(--rosa-vibrante);
-      border-radius: 16px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 20px;
-      flex-wrap: wrap;
-      box-shadow: 0 4px 15px rgba(255, 128, 191, 0.25);
-    }
+   .info-payment-banner {
+  max-width: 1200px;
+  margin: 30px auto 25px auto;
+  padding: 20px 25px;
+  background: var(--bg-celeste-soft); /* Tomará el color crema suave */
+  border-left: 6px solid var(--primary-celeste-deep); /* Borde en verde oliva oscuro */
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  flex-wrap: wrap;
+  box-shadow: 0 4px 15px rgba(46, 74, 33, 0.12); /* Sombra difuminada en tono verde suave */
+}
 
     .info-payment-banner strong {
       font-size: 1.1rem;
@@ -729,48 +729,49 @@
     }
 
     .cat-btn {
-      background: rgba(255, 255, 255, 0.9);
-      backdrop-filter: blur(5px);
-      border: 1.5px solid #ffd1dc;
-      text-align: left;
-      padding: 10px 14px;
-      border-radius: 10px;
-      cursor: pointer;
-      font-size: 0.92rem;
-      font-weight: 700;
-      color: var(--text-dark);
-      transition: all 0.2s;
-    }
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(5px);
+  border: 1.5px solid #D4E2C9;      /* Borde en tono verdoso suave acorde al nuevo diseño */
+  text-align: left;
+  padding: 10px 14px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 0.92rem;
+  font-weight: 700;
+  color: var(--text-dark);
+  box-shadow: 0 4px 12px rgba(118, 160, 88, 0.15); /* Sombra suave en verde claro */
+  transition: all 0.2s;
+}
 
     .cat-btn:hover, .cat-btn.active {
-      background-color: var(--bg-rosa-soft);
-      color: var(--rosa-vibrante);
-      border-color: var(--primary-rosa);
-      padding-left: 18px;
-    }
+  background-color: #E2E8D8;        /* Verde claro suave */
+  color: #2E4A21;                   /* Verde oliva oscuro */
+  border-color: #76A058;            /* Borde en verde claro */
+  padding-left: 18px;
+}
 
-    .catalog-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 20px;
-    }
+.catalog-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
 
-    .catalog-header h2 {
-      font-size: 1.6rem;
-      color: var(--rosa-vibrante);
-    }
+.catalog-header h2 {
+  font-size: 1.6rem;
+  color: #2E4A21;                   /* Texto principal en verde oliva oscuro */
+}
 
-    .sort-select {
-      padding: 8px 14px;
-      border-radius: 10px;
-      border: 2px solid var(--primary-celeste);
-      outline: none;
-      font-size: 0.9rem;
-      font-weight: 600;
-      background-color: white;
-      color: var(--text-dark);
-    }
+.sort-select {
+  padding: 8px 14px;
+  border-radius: 10px;
+  border: 2px solid #7BBCE8;        /* Borde en azul pastel */
+  outline: none;
+  font-size: 0.9rem;
+  font-weight: 600;
+  background-color: white;
+  color: #2E4A21;
+}
 
     .products-grid {
       display: grid;
@@ -782,7 +783,7 @@
       background: rgba(255, 255, 255, 0.95);
       backdrop-filter: blur(5px);
       border-radius: 16px;
-      border: 2px solid #ffd1dc;
+      border: 2px solid #D4E2C9;
       overflow: hidden;
       display: flex;
       flex-direction: column;
@@ -790,10 +791,10 @@
     }
 
     .product-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 10px 20px rgba(255, 128, 191, 0.25);
-      border-color: var(--primary-rosa);
-    }
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(118, 160, 88, 0.25); /* Sombra suave en tono verde claro */
+  border-color: #76A058;                             /* Borde en verde claro */
+}
 
     .card-header-bg {
       background-color: var(--bg-celeste-soft);
@@ -880,18 +881,23 @@
     }
 
     .add-to-cart-btn {
-      width: 100%;
-      background: linear-gradient(135deg, var(--primary-rosa), var(--rosa-vibrante));
-      color: white;
-      border: none;
-      padding: 10px;
-      border-radius: 10px;
-      font-weight: 700;
-      cursor: pointer;
-      font-size: 0.95rem;
-      transition: opacity 0.2s, transform 0.1s;
-      box-shadow: 0 4px 10px rgba(230, 0, 126, 0.2);
-    }
+  width: 100%;
+  background: linear-gradient(135deg, #76A058, #2E4A21);
+  color: white;
+  border: none;
+  padding: 10px;
+  border-radius: 10px;
+  font-weight: 700;
+  cursor: pointer;
+  font-size: 0.95rem;
+  transition: opacity 0.2s, transform 0.1s;
+  box-shadow: 0 4px 10px rgba(46, 74, 33, 0.2);
+}
+
+.add-to-cart-btn:hover {
+  opacity: 0.92;
+  transform: scale(1.01);
+}
 
     .add-to-cart-btn:hover {
       opacity: 0.92;
@@ -1164,18 +1170,18 @@
       font-weight: bold;
     }
 
-    .mandatory-notice {
-      background-color: var(--bg-rosa-soft);
-      border: 1px solid #ffb3d9;
-      color: #b30059;
-      padding: 12px;
-      border-radius: 10px;
-      font-size: 0.85rem;
-      margin: 15px 0;
-      text-align: left;
-      line-height: 1.4;
-      font-weight: 600;
-    }
+   .mandatory-notice {
+  background-color: #FDFBF2;        /* Fondo crema suave de la nueva paleta */
+  border: 1px solid #D4E2C9;        /* Borde en tono verde claro suave */
+  color: #2E4A21;                   /* Texto en verde oliva oscuro */
+  padding: 12px;
+  border-radius: 10px;
+  font-size: 0.85rem;
+  margin: 15px 0;
+  text-align: left;
+  line-height: 1.4;
+  font-weight: 600;
+}
 
     .mandatory-notice strong {
       color: var(--rosa-vibrante);
@@ -1293,11 +1299,11 @@
        6. PIE DE PÁGINA Y BOTONES FLOTANTES
        ========================================================================== */
     footer {
-      background: linear-gradient(135deg, rgba(227, 242, 253, 0.9) 0%, rgba(255, 240, 246, 0.9) 100%);
-      border-top: 2px solid #ffd1dc;
-      padding: 40px 20px;
-      margin-top: 50px;
-    }
+  background: linear-gradient(135deg, rgba(253, 251, 242, 0.9) 0%, rgba(123, 188, 232, 0.15) 100%);
+  border-top: 2px solid #76A058;
+  padding: 40px 20px;
+  margin-top: 50px;
+}
 
     .footer-container {
       max-width: 1200px;
@@ -1369,7 +1375,7 @@
 
       <!-- Logo superior izquierdo -->
       <a href="#" class="brand-logo">
-        <img src="imagenes flor/watermarked_img_12875868338885641363 copy.jpg" alt="Logo IMPRESION">
+        <img src="imagenes flor/WhatsApp Image 2026-10-27 at 20.17.27.jpeg" alt="Logo IMPRESION">
         <span>IMPRESION</span>
       </a>
 
@@ -1399,7 +1405,7 @@
     </div>
     
     <div class="hero-logo-container">
-      <img src="imagenes flor/watermarked_img_12875868338885641363 copy.jpg" alt="Logo ImpreSion Creativa" class="hero-logo-img">
+      <img src="imagenes flor/WhatsApp Image 2026-10-27 at 20.17.27.jpeg" alt="Logo ImpreSion Creativa" class="hero-logo-img">
     </div>
 
     <p class="hero-subtitle">Papelería Artesanal · Manualidades · Plantillas Editables · Libros para Colorear</p>
